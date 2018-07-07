@@ -21,14 +21,22 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/{name}',
-    handler: (request, h) => {
+    path: '/asd',
+    handler: async (request, h) => {
 
         //return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
 
-        testCollection.find(function (err, docs) {
-            return docs;
-        })
+        //return 'lol';
+
+        return new Promise((resolve, reject) => {
+            testCollection.find(function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+        });
     }
 });
 

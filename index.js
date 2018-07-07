@@ -5,7 +5,10 @@ const Hapi = require('hapi'),
     db = mongojs('mongodb://david:asd111@ds129541.mlab.com:29541/rs_food', ['test_collection']),
     testCollection = db.collection('test_collection');
 
-const server = new Hapi.server(process.env.PORT || 4000, '0.0.0.0');
+const server = Hapi.server({
+    port: process.env.PORT || 4000,
+    address: '0.0.0.0'
+});
 
 server.route({
     method: 'GET',

@@ -1,8 +1,10 @@
 'use strict';
 
+require('dotenv').config();
+
 const Hapi = require('hapi'),
     mongojs = require('mongojs'),
-    db = mongojs('mongodb://david:asd111@ds129541.mlab.com:29541/rs_food', ['test_collection']),
+    db = mongojs(process.env.DB_STR, ['test_collection']),
     testCollection = db.collection('test_collection');
 
 const server = Hapi.server({

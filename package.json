@@ -9,11 +9,18 @@
   "author": "David Farkas",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "brain.js": "^1.2.2",
     "csvtojson": "^2.0.4",
     "dotenv": "^6.0.0",
+    "fuse.js": "^3.2.1",
+    "handlebars": "^4.0.11",
     "hapi": "^17.5.2",
+    "inert": "^5.1.0",
+    "lodash": "^4.17.10",
     "mongojs": "^2.6.0",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "unirest": "^0.5.1",
+    "vision": "^5.3.3"
   }
 }

@@ -4,12 +4,12 @@ require('dotenv').config();
 
 const csvtojson = require('csvtojson'),
     mongojs = require('mongojs'),
-    db = mongojs(process.env.DB_STR, ['test_collection']),
-    testCollection = db.collection('test_collection'),
-    file = 'meals-seb.csv';
+    db = mongojs(process.env.DB_STR, ['test_collection2']),
+    testCollection = db.collection('test_collection2'),
+    file = 'Meals-Waterloo.csv';
 
 csvtojson()
-    .fromFile('./files/' + file)
+    .fromFile('./Files/' + file)
     .then((json) => {
         testCollection.save(json, function(err, asd) {
             process.exit(0);

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e78a3a0-917f-4c36-9f96-f6012df28b81" name="Default" comment="Add csv to json to mongo script.&#10;Add tester file to perform tests.">
+    <list default="true" id="3e78a3a0-917f-4c36-9f96-f6012df28b81" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/csv-to-mongo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/csv-to-mongo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/tester.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/tester.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +20,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+            <state relative-caret-position="491">
+              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -42,8 +38,8 @@
       <file leaf-file-name="calculateFoodScore.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/calculateFoodScore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            <state relative-caret-position="127">
+              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -105,6 +101,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>itemsins</find>
+      <find>templates</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,8 +121,8 @@
         <option value="$PROJECT_DIR$/Scripts/csv-to-mongo.js" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/RE/index.html" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/Templates/home.hbs" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -152,8 +149,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="286" />
-    <option name="y" value="118" />
+    <option name="x" value="196" />
+    <option name="y" value="11" />
     <option name="width" value="1371" />
     <option name="height" value="1027" />
   </component>
@@ -235,7 +232,7 @@
       <updated>1530996957176</updated>
       <workItem from="1530996958612" duration="12430000" />
       <workItem from="1531070724487" duration="1762000" />
-      <workItem from="1531676632784" duration="22505000" />
+      <workItem from="1531676632784" duration="23859000" />
     </task>
     <task id="LOCAL-00001" summary="Add csv to json to mongo script.&#10;Add tester file to perform tests.">
       <created>1531007904614</created>
@@ -251,14 +248,21 @@
       <option name="project" value="LOCAL" />
       <updated>1531677128393</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add route for Waterloo food db.&#10;Add function to calculate food score.&#10;Add script to write spoonacular nutrients and ingredients to mongo.&#10;Add hbs template for pre study purposes.">
+      <created>1532199675766</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1532199675766</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36697000" />
+    <option name="totallyTimeSpent" value="38051000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="286" y="118" width="1371" height="1027" extended-state="0" />
+    <frame x="196" y="11" width="1371" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17779444" />
@@ -290,7 +294,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add csv to json to mongo script.&#10;Add tester file to perform tests." />
     <MESSAGE value="Add dotenv and store db variables there." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dotenv and store db variables there." />
+    <MESSAGE value="Add route for Waterloo food db.&#10;Add function to calculate food score.&#10;Add script to write spoonacular nutrients and ingredients to mongo.&#10;Add hbs template for pre study purposes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add route for Waterloo food db.&#10;Add function to calculate food score.&#10;Add script to write spoonacular nutrients and ingredients to mongo.&#10;Add hbs template for pre study purposes." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.js">
@@ -423,13 +428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/calculateFoodScore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RE/itemsInStock.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -450,13 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/home.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -471,10 +462,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/App/calculateFoodScore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/home.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+          <caret column="32" selection-start-column="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
         </state>
       </provider>
     </entry>

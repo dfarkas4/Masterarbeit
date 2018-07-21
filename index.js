@@ -88,7 +88,7 @@ const init = async () => {
 
     await server.register(require('vision'));
     server.views({
-        relativeTo: Path.join(__dirname, 'templates'),
+        relativeTo: 'Templates',//Path.join(__dirname, 'templates'),
         engines: {
             hbs: require('handlebars')
         },

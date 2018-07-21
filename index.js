@@ -7,43 +7,76 @@ const Hapi = require('hapi'),
     mongojs = require('mongojs'),
     db = mongojs(process.env.DB_STR, ['test_collection', 'test_collection2']),
     testCollection = db.collection('test_collection'),
-    testCollection2 = db.collection('test_collection2');
+    testCollection2 = db.collection('test_collection2'),
+    _ = require('lodash');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
     address: '0.0.0.0'
 });
 
-const testdata = {
-    kek: 'dfksdjfj34fj8isdfjia',
-    posts: [
-        {
-            o: 'asd'
-        },
-        {
-            o: 'qwe'
-        },
-        {
-            o: 'zxc'
-        }
-    ]
-};
+function getRandomDishList(dishList, limit) {
+    let newDishList = new Set(),
+        randomIndex = _.random(0, dishList.length - 1, false);
+
+    let i = 0;
+
+    while(newDishList.size !== limit) {
+        i++;
+        newDishList.add(dishList[randomIndex]);
+        randomIndex = _.random(0, dishList.length - 1, false);
+    }
+
+    console.log('i', i);
+
+    return [...newDishList];
+}
 
 server.route({
     method: 'GET',
-    path: '/123',
-    handler: (request, h) => {
-        //return 'Hello, world!';
-        return h.view('home', testdata);
+    path: '/novelty',
+    handler: async (request, h) => {
+        const db1 = await new Promise((resolve, reject) => {
+            testCollection.find({}, { title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+        });
+
+        const db2 = await new Promise((resolve, reject) => {
+            testCollection2.find({}, { title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+        });
+
+        const dbs = _.union(db1, db2);
+
+        const randomDishes = getRandomDishList(dbs, 5);
+
+        console.log('dbs', dbs.length);
+        console.log(randomDishes.length);
+
+        const studyInput = {
+            dishes: randomDishes
+        };
+
+        return h.view('home', studyInput);
     }
 });
 
 server.route({
     method: 'POST',
-    path: '/456',
+    path: '/studyresults',
     handler: (request, h) => {
         console.log(request.payload);
-        return '';
+        return 'Thx für die Teilnahme.\n' + JSON.stringify(request.payload);
     }
 });
 

@@ -4,9 +4,9 @@ require('dotenv').config();
 
 const csvtojson = require('csvtojson'),
     mongojs = require('mongojs'),
-    db = mongojs(process.env.DB_STR, ['test_collection2']),
-    testCollection = db.collection('test_collection2'),
-    file = 'Meals Uptown Waterloo.csv';
+    db = mongojs(process.env.DB_STR, ['test_collection']),
+    testCollection = db.collection('test_collection'),
+    file = 'Meal Input.csv';
 
 csvtojson()
     .fromFile('./Files/' + file)

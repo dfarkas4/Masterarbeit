@@ -16,7 +16,7 @@ function buildQuery(filters) {
         query.distance = { $lte: filters.distance * 1000 }; // number
     }
     if (!_.isUndefined(filters.price) && filters.price.length > 0) {
-        query.price = { $lte: filters.price }; // string
+        query.price = { $lte: Number(filters.price) }; // number
     }
     if (!_.isUndefined(filters.kitchenStyle) && filters.kitchenStyle.length > 0) {
         query.kitchen_style = { $in: filters.kitchenStyle }; // array of strings

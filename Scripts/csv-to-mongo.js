@@ -6,7 +6,7 @@ const csvtojson = require('csvtojson'),
     mongojs = require('mongojs'),
     db = mongojs(process.env.DB_STR, ['test_collection2']),
     testCollection = db.collection('test_collection2'),
-    file = 'Meals-Waterloo.csv';
+    file = 'Meals Uptown Waterloo.csv';
 
 csvtojson()
     .fromFile('./Files/' + file)

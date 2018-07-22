@@ -8,7 +8,8 @@ const Hapi = require('hapi'),
     db = mongojs(process.env.DB_STR, ['test_collection', 'test_collection2']),
     testCollection = db.collection('test_collection'),
     testCollection2 = db.collection('test_collection2'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    getFilteredResults = require('./App/getFilteredResults');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
@@ -67,7 +68,7 @@ server.route({
             dishes: randomDishes
         };
 
-        return h.view('home', studyInput);
+        return h.view('novelty', studyInput);
     }
 });
 
@@ -117,11 +118,20 @@ server.route({
     }
 });
 
+server.route({
+    method: 'POST',
+    path: '/filteredresults',
+    handler: async (request, h) => {
+        console.log(request.payload); // TO-DO remove this later
+        return await getFilteredResults(request.payload);
+    }
+});
+
 const init = async () => {
 
     await server.register(require('vision'));
     server.views({
-        relativeTo: 'Templates',//Path.join(__dirname, 'templates'),
+        relativeTo: 'Templates',
         engines: {
             hbs: require('handlebars')
         },

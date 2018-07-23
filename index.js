@@ -123,7 +123,8 @@ server.route({
     path: '/filteredresults',
     handler: async (request, h) => {
         console.log(request.payload); // TO-DO remove this later
-        return await getFilteredResults(request.payload);
+        let asd = await getFilteredResults(request.payload);
+        return JSON.stringify(asd);
     }
 });
 

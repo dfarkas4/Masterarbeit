@@ -7,7 +7,14 @@ const mongoClient = require('mongodb').MongoClient,
     location = Object.freeze({
         BERLIN: 'test_collection',
         WATERLOO: 'test_collection2'
-    });
+    }),
+    definedKitchens = [
+        'Asiatisch',
+        'Fast Food',
+        'Griechisch',
+        'Indisch',
+        'Italienisch'
+    ];
 
 function buildQuery(filters) {
     let query = {};
@@ -19,7 +26,11 @@ function buildQuery(filters) {
         query.price = { $lte: Number(filters.price) }; // number
     }
     if (!_.isUndefined(filters.kitchenStyle) && filters.kitchenStyle.length > 0) {
-        query.kitchen_style = { $in: filters.kitchenStyle }; // array of strings
+        if (_.includes(filters.kitchenStyle, 'Sonstige')) {
+            query.kitchen_style = { $nin: _.difference(definedKitchens, filters.kitchenStyle) }; // array of strings
+        } else {
+            query.kitchen_style = { $in: filters.kitchenStyle }; // array of strings
+        }
     }
 
     return query;

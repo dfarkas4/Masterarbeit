@@ -15,6 +15,9 @@ const mongoClient = require('mongodb').MongoClient,
         'Indisch',
         'Italienisch'
     ];
+    // TO-DO remove, war nur als info hier für mich
+    /*ingredientsList = ['fisch', 'meeresfrüchte', 'pilze', 'knoblauch', 'zwiebel', 'innereien', 'kohlarten', 'koriander'],
+    dietList = ['vegan', 'vegetarisch', 'halal', 'pescetarisch'];*/
 
 function buildQuery(filters) {
     let query = {};
@@ -31,6 +34,18 @@ function buildQuery(filters) {
         } else {
             query.kitchen_style = { $in: filters.kitchenStyle }; // array of strings
         }
+    }
+
+    if (!_.isUndefined(filters.ingredients) && filters.ingredients.length > 0) {
+        _.forEach(filters.ingredients, (ingredient) => {
+            query['ingredients'+'.'+ingredient] = true;
+        });
+    }
+
+    if (!_.isUndefined(filters.diet) && filters.diet.length > 0) {
+        _.forEach(filters.diet, (type) => {
+            query['diet'+'.'+type] = true;
+        });
     }
 
     return query;

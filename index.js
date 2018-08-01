@@ -9,29 +9,16 @@ const Hapi = require('hapi'),
     testCollection = db.collection('test_collection'),
     testCollection2 = db.collection('test_collection2'),
     _ = require('lodash'),
-    getFilteredResults = require('./App/getFilteredResults');
+    getFilteredResults = require('./App/getFilteredResults'),
+    getRandomDishList = require('./App/getRandomDishList'),
+    helperFunctions = require('./App/helperFunctions'),
+    mapToNetworkData = require('./App/mapToNetworkData'),
+    neuralNetwork = require('./App/neuralNetwork');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
     address: '0.0.0.0'
 });
-
-function getRandomDishList(dishList, limit) {
-    let newDishList = new Set(),
-        randomIndex = _.random(0, dishList.length - 1, false);
-
-    let i = 0;
-
-    while(newDishList.size !== limit) {
-        i++;
-        newDishList.add(dishList[randomIndex]);
-        randomIndex = _.random(0, dishList.length - 1, false);
-    }
-
-    console.log('i', i);
-
-    return [...newDishList];
-}
 
 server.route({
     method: 'GET',
@@ -77,6 +64,72 @@ server.route({
     path: '/studyresults',
     handler: (request, h) => {
         console.log(request.payload);
+        return 'Thx für die Teilnahme.\n' + JSON.stringify(request.payload);
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/trainbrain',
+    handler: async (request, h) => {
+        const db2 = await new Promise((resolve, reject) => {
+            testCollection2.find({}, {}, function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+        });
+
+        const randomDishes = getRandomDishList(db2, 60);
+
+        console.log(randomDishes.length);
+
+        const dishInput = {
+            dishes: randomDishes
+        };
+
+        return h.view('trainbrain', dishInput);
+    }
+});
+
+server.route({
+    method: 'POST',
+    path: '/trainbrainresults',
+    handler: async (request, h) => {
+        console.log(request.payload);
+
+        let dishArr = await helperFunctions.getDishesByObjectOfIds(request.payload, 'test_collection2'),
+            minMaxValues = {};
+        helperFunctions.attachNetOutputToDishes(dishArr, request.payload);
+
+        let splitDishArr = _.chunk(dishArr, 45); // trainingdata, testdata
+
+        minMaxValues.minPrice = await helperFunctions.getMinOrMaxValue('price', 'test_collection2', +1);
+        minMaxValues.maxPrice = await helperFunctions.getMinOrMaxValue('price', 'test_collection2', -1);
+        minMaxValues.minDistance = await helperFunctions.getMinOrMaxValue('distance', 'test_collection2', +1);
+        minMaxValues.maxDistance = await helperFunctions.getMinOrMaxValue('distance', 'test_collection2', -1);
+
+        let mappedNetworkTrainingDishArr = _.map(splitDishArr[0], (dish) => mapToNetworkData(dish, 'test_collection2', minMaxValues)),
+            mappedNetworkTestDishArr = _.map(splitDishArr[1], (dish) => mapToNetworkData(dish, 'test_collection2', minMaxValues, true));
+
+        var netwuuurk = neuralNetwork.trainBrain(mappedNetworkTrainingDishArr);
+
+        console.log('asdasdasd1');
+
+        /*for (let i = 0; i < mappedNetworkTestDishArr.length; i++) {
+            const output = neuralNetwork.testBrain(netwuuurk, mappedNetworkTestDishArr[i]);
+
+            console.log('dish: ', splitDishArr[1][i].title);
+            console.log('suggested accuracy', output);
+            console.log('real accuracy', splitDishArr[1][i].netOutput);
+        }*/
+
+        const totalAccuracy = neuralNetwork.getAccuracy(netwuuurk, mappedNetworkTestDishArr, splitDishArr[1]);
+
+        console.log('asdasdasd2', totalAccuracy);
+
         return 'Thx für die Teilnahme.\n' + JSON.stringify(request.payload);
     }
 });

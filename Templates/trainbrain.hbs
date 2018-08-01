@@ -1,26 +1,29 @@
-<h2 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl.</h2>
-<b>Ich kenne Gericht XY sehr gut</b>
+<h2 class="title is-3 txt">Treffe bitte für jedes einzelne Gericht eine Auswahl. Beachte dabei die dargestellten
+    Informationen zu den Gerichten, die dir interessant vorkommen könnten, wie z.B. Preis oder Küche</h2>
+<b>Ich würde das Gericht essen bzw. ausprobieren</b>
 <ul>
-    <li>Ich stimme gar nicht zu</li>
-    <li>Ich stimme eher nicht zu</li>
-    <li>Ich stimme eher zu</li>
-    <li>Ich stimme voll und ganz zu</li>
+    <li>Ich stimme nicht zu</li>
+    <li>Ich stimme zu</li>
 </ul>
 <h2>Am Ende klicke auf das 'Senden' Knopf.</h2>
 
-<form method="post" action="/studyresults">
+<form method="post" action="/trainbrainresults">
     {{#each dishes}}
         <p class="txt"><b>{{title}}</b></p>
         {{#if description_title}}
             <p class="txt">{{description_title}}</p>
         {{/if}}
+        <p class="txt">{{restaurant}}</p>
+        <p class="txt">{{adress}}</p>
+        <p class="txt"><b>Preis:</b> {{price}}</p>
+        <p class="txt"><b>Entfernung zu Fuß in Meter:</b> {{distance}}</p>
+        <p class="txt"><b>Küche:</b> {{kitchen_style}}</p>
+        <p class="txt"><b>Gerichttyp:</b> {{type}}</p>
         <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
-        <label>stimme gar nicht zu</label>
-        <input type="radio" name="{{_id}}" value=1 required>
-        <input type="radio" name="{{_id}}" value=2>
-        <input type="radio" name="{{_id}}" value=3>
-        <input type="radio" name="{{_id}}" value=4>
-        <label>stimme voll und ganz zu</label>
+        <label>nicht essen</label>
+        <input type='radio' name="{{_id}}" value=0 required>
+        <input type="radio" name="{{_id}}" value=1>
+        <label>essen</label>
         <p class="separator">---------------------------------------------------------------------------------------</p>
     {{/each}}
     <br>

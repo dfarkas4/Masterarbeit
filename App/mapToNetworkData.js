@@ -33,6 +33,34 @@ function scaleValue(value, min, max) {
     return (value - min) / (max - min);
 }
 
+function reducingExperiment(arrInput, featureSetName) {
+    let res = [];
+
+    if ('n_ingredients' === featureSetName) {
+        // red meat + poultry
+        if (arrInput[0] === 1 || arrInput[1] === 1) {
+            res.push(1);
+        } else {
+            res.push(0);
+        }
+        // fish + seafood
+        if (arrInput[2] === 1 || arrInput[3] === 1) {
+            res.push(1);
+        } else {
+            res.push(0);
+        }
+
+        res.push(arrInput[4]); // pasta
+        //res.push(arrInput[5]); // bread
+        res.push(arrInput[6]); // rice
+    } else if ('misc_attributes' === featureSetName) {
+        res.push(arrInput[0]); // sweet
+        res.push(arrInput[1]); // spicy
+    }
+
+    return res;
+}
+
 function mapData(rawData, collectionName, minMaxValues, isInputOnly) {
     let res = [], // price, distance, kitchen, dishType
         kitchenArr,
@@ -51,16 +79,19 @@ function mapData(rawData, collectionName, minMaxValues, isInputOnly) {
     console.log(minMaxValues.maxDistance, '###maxDist###');*/
 
     res.push(scaleValue(rawData.price, minMaxValues.minPrice, minMaxValues.maxPrice));
-    res.push(scaleValue(rawData.distance, minMaxValues.minDistance, minMaxValues.maxDistance));
+    //res.push(scaleValue(rawData.distance, minMaxValues.minDistance, minMaxValues.maxDistance));
     kitchenArr[kitchenStyleEnum[rawData.kitchen_style]] = 1;
     //console.log(kitchenArr);
     res = _.concat(res, kitchenArr);
     dishTypeArr[dishTypeEnum[rawData.type]] = 1;
     res = _.concat(res, dishTypeArr);
 
-    const n_ingredients = rawData.n_ingredients.split('').map(Number),
+    let n_ingredients = rawData.n_ingredients.split('').map(Number),
         main_preparation = rawData.main_preparation.split('').map(Number),
         misc_attributes = rawData.misc_attributes.split('').map(Number);
+
+    n_ingredients = reducingExperiment(n_ingredients, 'n_ingredients');
+    misc_attributes = reducingExperiment(misc_attributes, 'misc_attributes');
 
     res = _.concat(res, n_ingredients);
     //res = _.concat(res, main_preparation);
@@ -72,6 +103,8 @@ function mapData(rawData, collectionName, minMaxValues, isInputOnly) {
             output: rawData.netOutput
         }
     }
+
+    //console.log(res);
 
     //console.log('RESRESRES', res);
 

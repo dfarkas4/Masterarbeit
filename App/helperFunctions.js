@@ -26,7 +26,7 @@ function attachNetOutputToDishes(dishes, outputs) {
     for (let i = 0; i < dishes.length; i++) {
         let netOutput = {};
 
-        console.log(outputs[dishes[i]._id.toString()], 'qweweqeqwew');
+        //console.log(outputs[dishes[i]._id.toString()], 'qweweqeqwew');
         if (Number(outputs[dishes[i]._id.toString()]) === 1) {
             netOutput['yes'] = 1;
         } else {

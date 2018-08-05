@@ -8,7 +8,7 @@ const brain = require('brain.js'),
 const config = {
     learingRate: 0.5, // ¯\_(ツ)_/¯
     iterations: 200,
-    hiddenLayers: [28],     // array of ints for the sizes of the hidden layers in the network. #38 currently
+    hiddenLayers: [20],     // array of ints for the sizes of the hidden layers in the network. #38 currently
     activation: 'sigmoid' // Supported activation types ['sigmoid', 'relu', 'leaky-relu', 'tanh']
 };
 

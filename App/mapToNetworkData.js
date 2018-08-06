@@ -1,5 +1,11 @@
 'use strict';
 
+// BERLIN:
+// price, distance, kitchenstyle[9], dishtype[5]
+// kitchenstyle:        Griechisch, Deutsch, Türkisch, Amerikanisch, Fast Food, Italienisch, Indisch, Asiatisch, International
+// dishtype:            Hauptspeise, Vorspeise, Fisch, Kleinigkeit, Beilage
+
+// WATERLOO:
 // price, distance, kitchenstyle[7], dishtype[7], n_ingredients[12], main_preparation[6], misc_attributes[4]
 // kitchenstyle:        Asiatisch, International, Französisch, Fast Food, Indisch, Amerikanisch, Italienisch
 // dishtype:            Hauptspeise, Vorspeise, Salat, Suppe, Sandwich, Pizza, Beilage
@@ -9,6 +15,24 @@
 
 const _ = require('lodash'),
     kitchenStyleEnum = Object.freeze({
+        'Griechisch': 0,
+        'Deutsch': 1,
+        'Türkisch': 2,
+        'Amerikanisch': 3,
+        'Fast Food': 4,
+        'Italienisch': 5,
+        'Indisch': 6,
+        'Asiatisch': 7,
+        'International': 8
+    }),
+    dishTypeEnum = Object.freeze({
+        'Hauptspeise': 0,
+        'Vorspeise': 1,
+        'Fisch': 2,
+        'Kleinigkeit': 3,
+        'Beilage': 4
+    }),
+    kitchenStyleEnum2 = Object.freeze({
         'Amerikanisch': 0,
         'Asiatisch': 1,
         'Fast Food': 2,
@@ -17,7 +41,7 @@ const _ = require('lodash'),
         'International': 5,
         'Italienisch': 6
     }),
-    dishTypeEnum = Object.freeze({
+    dishTypeEnum2 = Object.freeze({
         'Beilage': 0,
         'Hauptspeise': 1,
         'Salat': 2,
@@ -69,33 +93,36 @@ function mapData(rawData, collectionName, minMaxValues, isInputOnly) {
     if (collectionName === 'test_collection2') {
         kitchenArr = _.range(7).map(() => 0);
         dishTypeArr = _.range(7).map(() => 0);
-    } else {
+    } else if (collectionName === 'test_collection') {
         // TO-DO implement other two food db variants
-        //kitchenArr = _.range(7).map(() => 0);
-        //dishTypeArr = _.range(8).map(() => 0);
+        kitchenArr = _.range(9).map(() => 0);
+        dishTypeArr = _.range(5).map(() => 0);
     }
 
-    /*console.log(minMaxValues.minDistance, '###minDist###');
-    console.log(minMaxValues.maxDistance, '###maxDist###');*/
-
     res.push(scaleValue(rawData.price, minMaxValues.minPrice, minMaxValues.maxPrice));
-    //res.push(scaleValue(rawData.distance, minMaxValues.minDistance, minMaxValues.maxDistance));
-    kitchenArr[kitchenStyleEnum[rawData.kitchen_style]] = 1;
-    //console.log(kitchenArr);
-    res = _.concat(res, kitchenArr);
-    dishTypeArr[dishTypeEnum[rawData.type]] = 1;
-    res = _.concat(res, dishTypeArr);
+    res.push(scaleValue(rawData.distance, minMaxValues.minDistance, minMaxValues.maxDistance));
+    if (collectionName === 'test_collection2') {
+        kitchenArr[kitchenStyleEnum2[rawData.kitchen_style]] = 1;
+        res = _.concat(res, kitchenArr);
+        dishTypeArr[dishTypeEnum2[rawData.type]] = 1;
+        res = _.concat(res, dishTypeArr);
 
-    let n_ingredients = rawData.n_ingredients.split('').map(Number),
-        main_preparation = rawData.main_preparation.split('').map(Number),
-        misc_attributes = rawData.misc_attributes.split('').map(Number);
+        let n_ingredients = rawData.n_ingredients.split('').map(Number),
+            main_preparation = rawData.main_preparation.split('').map(Number),
+            misc_attributes = rawData.misc_attributes.split('').map(Number);
 
-    n_ingredients = reducingExperiment(n_ingredients, 'n_ingredients');
-    misc_attributes = reducingExperiment(misc_attributes, 'misc_attributes');
+        n_ingredients = reducingExperiment(n_ingredients, 'n_ingredients');
+        misc_attributes = reducingExperiment(misc_attributes, 'misc_attributes');
 
-    res = _.concat(res, n_ingredients);
-    //res = _.concat(res, main_preparation);
-    //res = _.concat(res, misc_attributes);
+        res = _.concat(res, n_ingredients);
+        //res = _.concat(res, main_preparation);
+        //res = _.concat(res, misc_attributes);
+    } else if (collectionName === 'test_collection') {
+        kitchenArr[kitchenStyleEnum[rawData.kitchen_style]] = 1;
+        res = _.concat(res, kitchenArr);
+        dishTypeArr[dishTypeEnum[rawData.type]] = 1;
+        res = _.concat(res, dishTypeArr);
+    }
 
         if (!isInputOnly) {
         res = {

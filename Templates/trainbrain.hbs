@@ -8,6 +8,8 @@
 <h2>Am Ende klicke auf das 'Senden' Knopf.</h2>
 
 <form method="post" action="/trainbrainresults">
+    <input type="hidden" value={{dbCollection}} name="dbCollection" />
+    <input type="hidden" value={{netToken}} name="netToken" />
     {{#each dishes}}
         <p class="txt"><b>{{title}}</b></p>
         {{#if description_title}}

@@ -1,18 +1,28 @@
 'use strict';
 
 const brain = require('brain.js'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    mongoClient = require('mongodb').MongoClient,
+    mapToNetworkData = require('./mapToNetworkData');
 
-//provide optional config object (or undefined). Defaults shown.
-// TO-DO -> schauen wie man das gut konfiguriert und konfigurieren
-const config = {
-    learingRate: 0.5, // ¯\_(ツ)_/¯
-    iterations: 200,
-    hiddenLayers: [20],     // array of ints for the sizes of the hidden layers in the network. #38 currently
-    activation: 'sigmoid' // Supported activation types ['sigmoid', 'relu', 'leaky-relu', 'tanh']
-};
+function trainBrain(trainingData, collectionName) {
+    let HiddenLayerNum = 20;
 
-function trainBrain(trainingData) {
+    if (collectionName === 'test_collection2') {
+        HiddenLayerNum = 20;
+    } else if (collectionName === 'test_collection') {
+        HiddenLayerNum = 16;
+    }
+
+    //provide optional config object (or undefined). Defaults shown.
+    // TO-DO -> schauen wie man das gut konfiguriert und konfigurieren
+    const config = {
+        learingRate: 0.5, // ¯\_(ツ)_/¯
+        iterations: 200,
+        hiddenLayers: [HiddenLayerNum],     // array of ints for the sizes of the hidden layers in the network. #38 currently
+        activation: 'sigmoid' // Supported activation types ['sigmoid', 'relu', 'leaky-relu', 'tanh']
+    };
+
     //create a simple feed forward neural network with backpropagation
     let net = new brain.NeuralNetwork(config);
 
@@ -21,10 +31,44 @@ function trainBrain(trainingData) {
     return net;
 }
 
-function saveBrain(net) {
-    const networkJson = net.toJSON();
+async function saveBrain(netToken, net, totalAccuracy, collectionName, minMaxValues) {
+    const entry = {},
+        networkJson = net.toJSON(),
+        dbConnection = await mongoClient.connect(process.env.DB_STR),
+        fullDishList = await dbConnection.db().collection(collectionName).find({}).toArray(),
+        fullDishListNetData = _.map(fullDishList, (dish) => {
+            return {
+                accuracy: mapToNetworkData(dish, collectionName, minMaxValues, true),
+                oid: dish._id
+            }
+        }),
+        fullDishListAccuracy = [];
 
-    // TO-DO -> save to db
+    for (let i = 0; i < fullDishListNetData.length; i++) {
+        let dishAccuracy = testBrain(net, fullDishListNetData[i].accuracy),
+            dishObject = {
+                accuracy: dishAccuracy.yes,
+                dishId: fullDishListNetData[i].oid
+            };
+
+        fullDishListAccuracy.push(dishObject);
+    }
+
+    fullDishListAccuracy.sort((a, b) => b.accuracy - a.accuracy);
+
+    entry.netToken = netToken;
+    entry.net = networkJson;
+    entry.totalAccuracy = totalAccuracy;
+    entry.dishCollection = {
+        name: collectionName,
+        accuracyList: fullDishListAccuracy
+    };
+
+    await dbConnection.db()
+        .collection('accuracies')
+        .update({ 'netToken': netToken, 'dishCollection.name': collectionName }, entry, { upsert : true });
+
+    dbConnection.close();
 }
 
 function loadBrain(netJson) {

@@ -15,9 +15,6 @@ const mongoClient = require('mongodb').MongoClient,
         'Indisch',
         'Italienisch'
     ];
-    // TO-DO remove, war nur als info hier für mich
-    /*ingredientsList = ['fisch', 'meeresfrüchte', 'pilze', 'knoblauch', 'zwiebel', 'innereien', 'kohlarten', 'koriander'],
-    dietList = ['vegan', 'vegetarisch', 'halal', 'pescetarisch'];*/
 
 function buildQuery(filters) {
     let query = {};
@@ -51,6 +48,34 @@ function buildQuery(filters) {
     return query;
 }
 
+async function attachAccuracy(dishes, location, netToken, dbConnection) {
+    let accuracyList = await dbConnection.db()
+        .collection('accuracies')
+        .find({
+                netToken: netToken,
+                'dishCollection.name': location
+            },
+            {
+                projection: {
+                    '_id': 0,
+                    'dishCollection.accuracyList': 1
+                }
+            })
+        .toArray();
+
+    if (accuracyList.length < 1) {
+        return;
+    }
+
+    accuracyList = accuracyList[0].dishCollection.accuracyList;
+
+    let accuracyListObject = _.keyBy(accuracyList, 'dishId');
+
+    for (let i = 0; i < dishes.length; i++) {
+        dishes[i].accuracy = accuracyListObject[dishes[i]._id].accuracy;
+    }
+}
+
 async function getFilteredResults(payload) {
     let dbConnection = await mongoClient.connect(process.env.DB_STR),
         result;
@@ -65,6 +90,10 @@ async function getFilteredResults(payload) {
         await dbConnection.db().collection(location[payload.location]).find(query).toArray();
 
     console.log('ASDASDASDASDASDASD', result.length); // TO-DO remove this later
+
+    if (!payload.resultCountOnly) {
+        await attachAccuracy(result, location[payload.location], payload.token, dbConnection);
+    }
 
     await dbConnection.close(true);
 

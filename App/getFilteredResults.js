@@ -35,7 +35,7 @@ function buildQuery(filters) {
 
     if (!_.isUndefined(filters.ingredients) && filters.ingredients.length > 0) {
         _.forEach(filters.ingredients, (ingredient) => {
-            query['ingredients'+'.'+ingredient] = true;
+            query['ingredients'+'.'+ingredient] = false;
         });
     }
 

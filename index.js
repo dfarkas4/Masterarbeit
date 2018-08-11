@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const Hapi = require('hapi'),
     Path = require('path'),
+    requestPromise = require('request-promise'),
     mongojs = require('mongojs'),
     db = mongojs(process.env.DB_STR, ['test_collection', 'test_collection2', 'neural_net_token']),
     testCollection = db.collection('test_collection'),
@@ -75,9 +76,43 @@ server.route({
 server.route({
     method: 'POST',
     path: '/studyresults',
-    handler: (request, h) => {
-        console.log(request.payload);
-        return 'Thx für die Teilnahme.\n' + JSON.stringify(request.payload);
+    handler: async (request, h) => {
+        if (request.payload['g-recaptcha-response'] === undefined ||
+            request.payload['g-recaptcha-response'] === '' ||
+            request.payload['g-recaptcha-response'] === null) {
+            return 'plz select captcha';
+        }
+
+        // Secret Key
+        const secretCaptchaKey = process.env.RECAPTCHA_SECRET;
+
+        var options = {
+            uri: 'https://google.com/recaptcha/api/siteverify',
+            qs: {
+                secret: secretCaptchaKey,
+                response: request.payload['g-recaptcha-response'],
+                remoteip: request.info.remoteAddress
+            },
+            headers: {
+                'User-Agent': 'Request-Promise'
+            },
+            json: true // Automatically parses the JSON string in the response
+        };
+
+        const result = await requestPromise(options)
+            .then(function (res) {
+                if (res.success) {
+                    // TO-DO IP + time aus res mitspeichern
+                    return request.payload;
+                } else {
+                    return 'failed captcha verification';
+                }
+            })
+            .catch(function (err) {
+                return 'failed captcha verification';
+            });
+
+        return result;
     }
 });
 

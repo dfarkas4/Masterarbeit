@@ -1,3 +1,6 @@
+<head>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
 <h2 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl.</h2>
 <b>Ich kenne Gericht XY sehr gut</b>
 <ul>
@@ -6,26 +9,51 @@
     <li>Ich stimme eher zu</li>
     <li>Ich stimme voll und ganz zu</li>
 </ul>
+<b>Ich habe das Gericht sehr oft gegessen</b>
+<ul>
+    <li>Ich stimme gar nicht zu</li>
+    <li>Ich stimme eher nicht zu</li>
+    <li>Ich stimme eher zu</li>
+    <li>Ich stimme voll und ganz zu</li>
+</ul>
 <h2>Am Ende klicke auf das 'Senden' Knopf.</h2>
 
-<form method="post" action="/studyresults">
+<form method="post" id="noveltyForm" onsubmit="setCaptcha()" action="/studyresults">
+    <input type="hidden" value="" name="captcha" id="captchaInput" />
     {{#each dishes}}
         <p class="txt"><b>{{title}}</b></p>
         {{#if description_title}}
             <p class="txt">{{description_title}}</p>
         {{/if}}
         <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
+        <b>Ich kenne Gericht sehr gut</b><br>
         <label>stimme gar nicht zu</label>
         <input type="radio" name="{{_id}}" value=1 required>
         <input type="radio" name="{{_id}}" value=2>
         <input type="radio" name="{{_id}}" value=3>
         <input type="radio" name="{{_id}}" value=4>
         <label>stimme voll und ganz zu</label>
+        <br>
+        <b>Ich habe das Gericht sehr oft gegessen</b><br>
+        <label>stimme gar nicht zu</label>
+        <input type="radio" name="{{_id}}_gegessen" value=1 required>
+        <input type="radio" name="{{_id}}_gegessen" value=2>
+        <input type="radio" name="{{_id}}_gegessen" value=3>
+        <input type="radio" name="{{_id}}_gegessen" value=4>
+        <label>stimme voll und ganz zu</label>
         <p class="separator">---------------------------------------------------------------------------------------</p>
     {{/each}}
     <br>
+    <div class="g-recaptcha" data-sitekey="6LeMCWkUAAAAAHkXssW0pTp_cGruaxVJAKHtvOog"></div>
     <input class="sendButton" type="submit" value="Senden">
 </form>
+
+<script>
+    function setCaptcha()
+    {
+        document.getElementById('captchaInput').value = document.querySelector('#g-recaptcha-response');
+    }
+</script>
 
 <style>
     h2 {

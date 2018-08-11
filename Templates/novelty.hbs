@@ -9,24 +9,26 @@
     <li>Ich stimme eher zu</li>
     <li>Ich stimme voll und ganz zu</li>
 </ul>
-<b>Ich habe das Gericht sehr oft gegessen</b>
+<b>Ich habe Gericht XY sehr oft gegessen</b>
 <ul>
     <li>Ich stimme gar nicht zu</li>
     <li>Ich stimme eher nicht zu</li>
     <li>Ich stimme eher zu</li>
     <li>Ich stimme voll und ganz zu</li>
 </ul>
-<h2>Am Ende klicke auf das 'Senden' Knopf.</h2>
+<h2>Bitte klicke am Ende auf "Senden", um die<br>Umfrage abzuschließen und anschließend<br>am Gewinnspiel teilnehmen zu können.</h2>
 
 <form method="post" id="noveltyForm" onsubmit="setCaptcha()" action="/studyresults">
     <input type="hidden" value="" name="captcha" id="captchaInput" />
+    Deine E-Mail Adresse:
+    <input type="email" name="email" required>
     {{#each dishes}}
         <p class="txt"><b>{{title}}</b></p>
         {{#if description_title}}
             <p class="txt">{{description_title}}</p>
         {{/if}}
         <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
-        <b>Ich kenne Gericht sehr gut</b><br>
+        <span class="txt"><b>Ich kenne {{title}} sehr gut.</b></span><br>
         <label>stimme gar nicht zu</label>
         <input type="radio" name="{{_id}}" value=1 required>
         <input type="radio" name="{{_id}}" value=2>
@@ -34,7 +36,7 @@
         <input type="radio" name="{{_id}}" value=4>
         <label>stimme voll und ganz zu</label>
         <br>
-        <b>Ich habe das Gericht sehr oft gegessen</b><br>
+        <span class="txt"><b>Ich habe {{title}} sehr oft gegessen.</b></span><br>
         <label>stimme gar nicht zu</label>
         <input type="radio" name="{{_id}}_gegessen" value=1 required>
         <input type="radio" name="{{_id}}_gegessen" value=2>

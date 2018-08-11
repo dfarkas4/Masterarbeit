@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e78a3a0-917f-4c36-9f96-f6012df28b81" name="Default" comment="Fix bug where ingredient filter would return the complement.">
+    <list default="true" id="3e78a3a0-917f-4c36-9f96-f6012df28b81" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/App/saveNoveltyResult.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/getFilteredResults.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/getFilteredResults.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/csv-to-mongo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/csv-to-mongo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/distances-to-mongo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/distances-to-mongo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/filterbinary-to-objects.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/filterbinary-to-objects.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/string-to-number.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/string-to-number.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/novelty.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/novelty.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +22,17 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2032">
-              <caret line="104" column="59" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
+            <state relative-caret-position="544">
+              <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="saveNoveltyResult.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/saveNoveltyResult.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -47,25 +50,7 @@
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spoonacular-to-mongo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/spoonacular-to-mongo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="64" column="25" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="8" />
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -73,8 +58,8 @@
       <file leaf-file-name="novelty.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+            <state relative-caret-position="391">
+              <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -82,17 +67,26 @@
       <file leaf-file-name="getFilteredResults.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/getFilteredResults.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="712">
-              <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
+            <state relative-caret-position="1496">
+              <caret line="97" column="4" lean-forward="true" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="distances-to-mongo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/distances-to-mongo.js">
+      <file leaf-file-name="generateNetToken.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/generateNetToken.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+            <state relative-caret-position="289">
+              <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="neuralNetwork.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/neuralNetwork.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="68" column="90" selection-start-line="68" selection-start-column="90" selection-end-line="68" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -109,8 +103,8 @@
       <file leaf-file-name="string-to-number.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/string-to-number.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+            <state relative-caret-position="102">
+              <caret line="6" column="42" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -127,16 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>netoutput</find>
-      <find>ingredients</find>
-      <find>definedKitchens</find>
-      <find>_.</find>
-      <find>resultCountOnly</find>
-      <find>resultcountonly</find>
-      <find>qwe</find>
-      <find>Number</find>
-      <find>collectionName</find>
-      <find>maptonet</find>
       <find>kitchenStyleEnum</find>
       <find>dishTypeEnum2</find>
       <find>dishTypeEnum</find>
@@ -144,7 +128,6 @@
       <find>undefined</find>
       <find>#</find>
       <find>getaccuracy</find>
-      <find>mongoClient</find>
       <find>mapToNetworkData</find>
       <find>token</find>
       <find>for</find>
@@ -157,6 +140,17 @@
       <find>br</find>
       <find>env</find>
       <find>console.log</find>
+      <find>mongoClient</find>
+      <find>.txt</find>
+      <find>txt</find>
+      <find>is-3</find>
+      <find>delete</find>
+      <find>insert</find>
+      <find>upsert</find>
+      <find>number</find>
+      <find>_.</find>
+      <find>key</find>
+      <find>input</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,13 +180,14 @@
         <option value="$PROJECT_DIR$/App/generateNetToken.js" />
         <option value="$PROJECT_DIR$/App/neuralNetwork.js" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/Templates/novelty.hbs" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/App/getFilteredResults.js" />
         <option value="$PROJECT_DIR$/Scripts/csv-to-mongo.js" />
         <option value="$PROJECT_DIR$/Scripts/distances-to-mongo.js" />
         <option value="$PROJECT_DIR$/Scripts/filterbinary-to-objects.js" />
         <option value="$PROJECT_DIR$/Scripts/string-to-number.js" />
+        <option value="$PROJECT_DIR$/Templates/novelty.hbs" />
+        <option value="$PROJECT_DIR$/App/saveNoveltyResult.js" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -318,7 +313,7 @@
       <workItem from="1533553946210" duration="780000" />
       <workItem from="1533671667372" duration="2773000" />
       <workItem from="1533763516622" duration="7502000" />
-      <workItem from="1533992228610" duration="3986000" />
+      <workItem from="1533992228610" duration="8918000" />
     </task>
     <task id="LOCAL-00001" summary="Add csv to json to mongo script.&#10;Add tester file to perform tests.">
       <created>1531007904614</created>
@@ -411,11 +406,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533554260104</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Implement recaptcha.&#10;Fix distance and price filter bug.&#10;Adjust novelty page.">
+      <created>1534023100344</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1534023100345</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172403000" />
+    <option name="totallyTimeSpent" value="177335000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3" y="2" width="1881" height="1027" extended-state="0" />
@@ -425,6 +427,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936978" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
@@ -438,7 +441,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936978" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,16 +462,10 @@
     <MESSAGE value="Add neural network prototype.&#10;Add new db scripts.&#10;Add feature to filter based on ingredients and diet." />
     <MESSAGE value="Add tokens for neural networks.&#10;Add first food db for neural networks.&#10;Add accuracy calculatons.&#10;Add option to save neural network." />
     <MESSAGE value="Fix bug where ingredient filter would return the complement." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bug where ingredient filter would return the complement." />
+    <MESSAGE value="Implement recaptcha.&#10;Fix distance and price filter bug.&#10;Adjust novelty page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement recaptcha.&#10;Fix distance and price filter bug.&#10;Adjust novelty page." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Scripts/distances-to-mongo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="69" lean-forward="true" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/string-to-number.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -666,20 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/neuralNetwork.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/generateNetToken.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/mapToNetworkData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -701,31 +683,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="8" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/getFilteredResults.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -743,13 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/string-to-number.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/csv-to-mongo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -757,10 +711,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/getFilteredResults.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="97" column="4" lean-forward="true" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/generateNetToken.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/neuralNetwork.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="68" column="90" selection-start-line="68" selection-start-column="90" selection-end-line="68" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/string-to-number.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/saveNoveltyResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2032">
-          <caret line="104" column="59" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
+        <state relative-caret-position="544">
+          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
         </state>
       </provider>
     </entry>

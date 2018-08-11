@@ -16,7 +16,8 @@ const Hapi = require('hapi'),
     helperFunctions = require('./App/helperFunctions'),
     mapToNetworkData = require('./App/mapToNetworkData'),
     neuralNetwork = require('./App/neuralNetwork'),
-    generateNetToken = require('./App/generateNetToken');
+    generateNetToken = require('./App/generateNetToken'),
+    saveNoveltyResult = require('./App/saveNoveltyResult');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
@@ -60,10 +61,7 @@ server.route({
 
         const dbs = _.union(db1, db2);
 
-        const randomDishes = getRandomDishList(dbs, 5);
-
-        console.log('dbs', dbs.length);
-        console.log(randomDishes.length);
+        const randomDishes = getRandomDishList(dbs, 50);
 
         const studyInput = {
             dishes: randomDishes
@@ -100,10 +98,19 @@ server.route({
         };
 
         const result = await requestPromise(options)
-            .then(function (res) {
+            .then(async function (res) {
                 if (res.success) {
-                    // TO-DO IP + time aus res mitspeichern
-                    return request.payload;
+                    const metaData = {
+                        hostname: res.hostname,
+                        time: res.challenge_ts,
+                        email: request.payload.email
+                    };
+
+                    delete request.payload.email;
+                    delete request.payload.captcha;
+                    delete request.payload['g-recaptcha-response'];
+
+                    return await saveNoveltyResult(request.payload, metaData);
                 } else {
                     return 'failed captcha verification';
                 }

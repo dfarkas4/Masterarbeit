@@ -9,7 +9,7 @@ function buildInput(payload, metaData) {
     let input = {
             email: metaData.email,
             time: metaData.time,
-            hostname: metaData.hostname
+            remote_address: metaData.remote_address
         },
         dishList = {};
 
@@ -21,8 +21,6 @@ function buildInput(payload, metaData) {
             }
         }
     }
-
-    console.log('DISHLISSSST', dishList);
 
     input.novelty = dishList;
 

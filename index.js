@@ -61,7 +61,7 @@ server.route({
 
         const dbs = _.union(db1, db2);
 
-        const randomDishes = getRandomDishList(dbs, 50);
+        const randomDishes = getRandomDishList(dbs, 5);
 
         const studyInput = {
             dishes: randomDishes
@@ -101,7 +101,7 @@ server.route({
             .then(async function (res) {
                 if (res.success) {
                     const metaData = {
-                        hostname: res.hostname,
+                        remote_address: request.info.remoteAddress,
                         time: res.challenge_ts,
                         email: request.payload.email
                     };

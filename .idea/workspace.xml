@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e78a3a0-917f-4c36-9f96-f6012df28b81" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/App/saveNoveltyResult.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/novelty.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/novelty.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,8 +20,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+            <state relative-caret-position="553">
+              <caret line="63" column="54" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -31,8 +29,8 @@
       <file leaf-file-name="saveNoveltyResult.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/saveNoveltyResult.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+            <state relative-caret-position="374">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -121,8 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kitchenStyleEnum</find>
-      <find>dishTypeEnum2</find>
       <find>dishTypeEnum</find>
       <find>config</find>
       <find>undefined</find>
@@ -150,7 +146,9 @@
       <find>number</find>
       <find>_.</find>
       <find>key</find>
+      <find>50</find>
       <find>input</find>
+      <find>5</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -313,7 +311,7 @@
       <workItem from="1533553946210" duration="780000" />
       <workItem from="1533671667372" duration="2773000" />
       <workItem from="1533763516622" duration="7502000" />
-      <workItem from="1533992228610" duration="8918000" />
+      <workItem from="1533992228610" duration="9715000" />
     </task>
     <task id="LOCAL-00001" summary="Add csv to json to mongo script.&#10;Add tester file to perform tests.">
       <created>1531007904614</created>
@@ -413,11 +411,25 @@
       <option name="project" value="LOCAL" />
       <updated>1534023100345</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implement novelty study persistance">
+      <created>1534028803962</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1534028803962</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Use remote address instead of hostname to save ip.">
+      <created>1534029531876</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1534029531876</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177335000" />
+    <option name="totallyTimeSpent" value="178132000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3" y="2" width="1881" height="1027" extended-state="0" />
@@ -463,7 +475,9 @@
     <MESSAGE value="Add tokens for neural networks.&#10;Add first food db for neural networks.&#10;Add accuracy calculatons.&#10;Add option to save neural network." />
     <MESSAGE value="Fix bug where ingredient filter would return the complement." />
     <MESSAGE value="Implement recaptcha.&#10;Fix distance and price filter bug.&#10;Adjust novelty page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement recaptcha.&#10;Fix distance and price filter bug.&#10;Adjust novelty page." />
+    <MESSAGE value="Implement novelty study persistance" />
+    <MESSAGE value="Use remote address instead of hostname to save ip." />
+    <option name="LAST_COMMIT_MESSAGE" value="Use remote address instead of hostname to save ip." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Scripts/string-to-number.js">
@@ -718,13 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/getFilteredResults.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
@@ -753,17 +760,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App/saveNoveltyResult.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="374">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+        <state relative-caret-position="553">
+          <caret line="63" column="54" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
         </state>
       </provider>
     </entry>

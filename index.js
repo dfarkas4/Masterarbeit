@@ -75,8 +75,6 @@ server.route({
             dishes: randomDishes
         };
 
-        console.log('STUDDYPINIT', studyInput);
-
         return h.view('novelty', studyInput);
     }
 });

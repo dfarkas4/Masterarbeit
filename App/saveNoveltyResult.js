@@ -14,8 +14,9 @@ function buildInput(payload, metaData) {
         dishList = {};
 
     for (let dish in payload) {
-        if (!_.includes(dish, '_gegessen')) {
+        if (!_.includes(dish, '_gegessen') && !_.includes(dish, '_location')) {
             dishList[dish] = {
+                location: payload[dish + '_location'],
                 known: Number(payload[dish]),
                 eaten: Number(payload[dish + '_gegessen'])
             }
@@ -33,7 +34,7 @@ async function saveNoveltyResult(payload, metaData) {
     const emailCount = await dbConnection.db().collection('novelty_scores').find({ email: metaData.email }).count();
 
     if (emailCount > 0) {
-        return 'Diese E-Mail Adresse ist schon benutzt.'
+        return 'Diese E-Mail Adresse wurde schon verwendet.'
     }
 
     const input = buildInput(payload, metaData);

@@ -49,6 +49,10 @@ server.route({
             });
         });
 
+        const newDb1 = _.map(db1, function(dish) {
+            return _.extend({}, dish, { location: 'test_collection' });
+        });
+
         const db2 = await new Promise((resolve, reject) => {
             testCollection2.find({}, { title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
                 if (err) {
@@ -59,13 +63,19 @@ server.route({
             });
         });
 
-        const dbs = _.union(db1, db2);
+        const newDb2 = _.map(db2, function(dish) {
+            return _.extend({}, dish, { location: 'test_collection2' });
+        });
+
+        const dbs = _.union(newDb1, newDb2);
 
         const randomDishes = getRandomDishList(dbs, 50);
 
         const studyInput = {
             dishes: randomDishes
         };
+
+        console.log('STUDDYPINIT', studyInput);
 
         return h.view('novelty', studyInput);
     }

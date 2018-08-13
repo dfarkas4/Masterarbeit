@@ -40,7 +40,7 @@ server.route({
     path: '/novelty',
     handler: async (request, h) => {
         const db1 = await new Promise((resolve, reject) => {
-            testCollection.find({}, { title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
+            testCollection.find({}, { id_num: 1, title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
                 if (err) {
                     reject(err);
                 } else {
@@ -54,7 +54,7 @@ server.route({
         });
 
         const db2 = await new Promise((resolve, reject) => {
-            testCollection2.find({}, { title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
+            testCollection2.find({}, { id_num: 1, title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
                 if (err) {
                     reject(err);
                 } else {

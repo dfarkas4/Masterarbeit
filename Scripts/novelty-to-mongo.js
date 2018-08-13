@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const mongoClient = require('mongodb').MongoClient,
+    ObjectId = require('mongodb').ObjectID,
     _ = require('lodash');
 
 function isKnown(known) {
@@ -50,7 +51,27 @@ async function writeNoveltyToDb() {
         return element[1].location === 'test_collection2';
     });
 
-    console.log('dishuz', db2Dishes);
+    for (let i = 0; i < db1Dishes.length; i++) {
+        let entry = {
+            known: db1Dishes[i][1].known,
+            seen: db1Dishes[i][1].seen
+        };
+
+        await dbConnection.db()
+            .collection('test_collection')
+            .update({ 'id_num': db1Dishes[i][0] }, { $set: { novelty: entry } }, { upsert : true });
+    }
+
+    for (let i = 0; i < db2Dishes.length; i++) {
+        let entry = {
+            known: db2Dishes[i][1].known,
+            seen: db2Dishes[i][1].seen
+        };
+
+        await dbConnection.db()
+            .collection('test_collection2')
+            .update({ 'id_num': db2Dishes[i][0] }, { $set: { novelty: entry } }, { upsert : true });
+    }
 
     console.log('-----------------------------------------------');
     dbConnection.close();

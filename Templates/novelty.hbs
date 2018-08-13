@@ -30,21 +30,21 @@
         <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
         <span class="txt"><b>Ich kenne {{title}} sehr gut.</b></span><br>
         <label>stimme gar nicht zu</label>
-        <input type="radio" name="{{_id}}" value=1 required>
-        <input type="radio" name="{{_id}}" value=2>
-        <input type="radio" name="{{_id}}" value=3>
-        <input type="radio" name="{{_id}}" value=4>
+        <input type="radio" name="{{id_num}}" value=1 required>
+        <input type="radio" name="{{id_num}}" value=2>
+        <input type="radio" name="{{id_num}}" value=3>
+        <input type="radio" name="{{id_num}}" value=4>
         <label>stimme voll und ganz zu</label>
         <br>
         <span class="txt"><b>Ich habe {{title}} sehr oft gegessen.</b></span><br>
         <label>stimme gar nicht zu</label>
-        <input type="radio" name="{{_id}}_gegessen" value=1 required>
-        <input type="radio" name="{{_id}}_gegessen" value=2>
-        <input type="radio" name="{{_id}}_gegessen" value=3>
-        <input type="radio" name="{{_id}}_gegessen" value=4>
+        <input type="radio" name="{{id_num}}_gegessen" value=1 required>
+        <input type="radio" name="{{id_num}}_gegessen" value=2>
+        <input type="radio" name="{{id_num}}_gegessen" value=3>
+        <input type="radio" name="{{id_num}}_gegessen" value=4>
         <label>stimme voll und ganz zu</label>
         <p class="separator">---------------------------------------------------------------------------------------</p>
-        <input type="hidden" value="{{location}}" name="{{_id}}_location" />
+        <input type="hidden" value="{{location}}" name="{{id_num}}_location" />
     {{/each}}
     <br>
     <div class="g-recaptcha" data-sitekey="6LeMCWkUAAAAAHkXssW0pTp_cGruaxVJAKHtvOog"></div>

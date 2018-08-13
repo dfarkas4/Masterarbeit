@@ -20,4 +20,4 @@ async function convertStringValuesToNumber(collectionName) {
     console.log('done');
 }
 
-convertStringValuesToNumber('test_collection');
+convertStringValuesToNumber('test_collection2');

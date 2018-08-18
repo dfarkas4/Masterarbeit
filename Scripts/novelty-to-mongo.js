@@ -3,15 +3,29 @@
 require('dotenv').config();
 
 const mongoClient = require('mongodb').MongoClient,
-    ObjectId = require('mongodb').ObjectID,
     _ = require('lodash');
 
 function isKnown(known) {
-    if (known >= 2) {
-        return false;
+    if (known > 2) {
+        return true;
     }
 
-    return true;
+    return false;
+}
+
+function calculateNovelty(known, eaten) {
+    const preNoveltyMax = -Math.log2(0.7*(1 / 4) + 0.3*(1 / 4)),
+        preNoveltyMin = -Math.log2(0.7*(4 / 4) + 0.3*(4 / 4));
+
+    let preNovelty = -Math.log2(0.7*(known / 4) + 0.3*(eaten / 4));
+
+    return (preNovelty - preNoveltyMin) / (preNoveltyMax - preNoveltyMin); // (value - min) / (max - min);
+}
+
+// Formula: https://math.stackexchange.com/questions/22348/how-to-add-and-subtract-values-from-an-average
+// TO-DO muss noch mit mehrere getestet werden
+function updateAverageNovelty(avgNovelty, noveltyEntry, seen) {
+    return avgNovelty + ((noveltyEntry - avgNovelty) / (seen + 1));
 }
 
 async function writeNoveltyToDb() {
@@ -20,19 +34,25 @@ async function writeNoveltyToDb() {
 
     const noveltyScoresList = await dbConnection.db().collection('novelty_scores').find({}).toArray();
 
-    //TO-DO attach calculated scientific novelty score to each dish (und eaten?)
     for (let i = 0; i < noveltyScoresList.length; i++) {
         for (let dish in noveltyScoresList[i].novelty) {
             if (dishMap.has(dish)) {
                 let currDish = dishMap.get(dish),
-                    known = isKnown(noveltyScoresList[i].novelty[dish].known) ? 1 : 0;
+                    known = isKnown(noveltyScoresList[i].novelty[dish].known) ? 1 : 0,
+                    noveltyEntry = calculateNovelty(
+                        noveltyScoresList[i].novelty[dish].known,
+                        noveltyScoresList[i].novelty[dish].eaten);
 
                 currDish.seen = currDish.seen + 1;
                 currDish.known = currDish.known + known;
+                currDish.avgNovelty = updateAverageNovelty(currDish.avgNovelty, noveltyEntry, currDish.seen);
             } else {
                 let entry = {
                     seen: 1,
                     known: isKnown(noveltyScoresList[i].novelty[dish].known) ? 1 : 0,
+                    avgNovelty: calculateNovelty(
+                        noveltyScoresList[i].novelty[dish].known,
+                        noveltyScoresList[i].novelty[dish].eaten),
                     location: noveltyScoresList[i].novelty[dish].location
                 };
 
@@ -54,7 +74,8 @@ async function writeNoveltyToDb() {
     for (let i = 0; i < db1Dishes.length; i++) {
         let entry = {
             known: db1Dishes[i][1].known,
-            seen: db1Dishes[i][1].seen
+            seen: db1Dishes[i][1].seen,
+            novelty_score: db1Dishes[i][1].avgNovelty
         };
 
         await dbConnection.db()
@@ -65,7 +86,8 @@ async function writeNoveltyToDb() {
     for (let i = 0; i < db2Dishes.length; i++) {
         let entry = {
             known: db2Dishes[i][1].known,
-            seen: db2Dishes[i][1].seen
+            seen: db2Dishes[i][1].seen,
+            novelty_score: db2Dishes[i][1].avgNovelty
         };
 
         await dbConnection.db()
@@ -79,3 +101,4 @@ async function writeNoveltyToDb() {
 }
 
 writeNoveltyToDb();
+

@@ -74,7 +74,7 @@ async function attachAccuracy(dishes, location, netToken, dbConnection) {
     let accuracyListObject = _.keyBy(accuracyList, 'dishId');
 
     for (let i = 0; i < dishes.length; i++) {
-        dishes[i].accuracy = accuracyListObject[dishes[i]._id].accuracy;
+        dishes[i].accuracy = accuracyListObject[dishes[i].id_num].accuracy;
     }
 }
 
@@ -88,8 +88,6 @@ async function getFilteredResults(payload) {
         await dbConnection.db().collection(location[payload.location]).find(query).count()
         :
         await dbConnection.db().collection(location[payload.location]).find(query).toArray();
-
-    console.log('ASDASDASDASDASDASD', result.length); // TO-DO remove this later
 
     if (!payload.resultCountOnly) {
         await attachAccuracy(result, location[payload.location], payload.token, dbConnection);

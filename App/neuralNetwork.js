@@ -11,7 +11,7 @@ function trainBrain(trainingData, collectionName) {
     if (collectionName === 'test_collection2') {
         HiddenLayerNum = 20;
     } else if (collectionName === 'test_collection') {
-        HiddenLayerNum = 16;
+        HiddenLayerNum = 23;
     }
 
     //provide optional config object (or undefined). Defaults shown.
@@ -31,24 +31,24 @@ function trainBrain(trainingData, collectionName) {
     return net;
 }
 
-async function saveBrain(netToken, net, totalAccuracy, collectionName, minMaxValues) {
+async function saveBrain(netToken, net, totalAccuracy, collectionName, minMaxValues, trainingAndTestDataUnmapped) {
     const entry = {},
         networkJson = net.toJSON(),
         dbConnection = await mongoClient.connect(process.env.DB_STR),
         fullDishList = await dbConnection.db().collection(collectionName).find({}).toArray(),
         fullDishListNetData = _.map(fullDishList, (dish) => {
             return {
-                accuracy: mapToNetworkData(dish, collectionName, minMaxValues, true),
-                oid: dish._id
+                mappedDishData: mapToNetworkData(dish, collectionName, minMaxValues, true),
+                id_num: dish.id_num
             }
         }),
         fullDishListAccuracy = [];
 
     for (let i = 0; i < fullDishListNetData.length; i++) {
-        let dishAccuracy = testBrain(net, fullDishListNetData[i].accuracy),
+        let dishAccuracy = testBrain(net, fullDishListNetData[i].mappedDishData),
             dishObject = {
                 accuracy: dishAccuracy.yes,
-                dishId: fullDishListNetData[i].oid
+                dishId: fullDishListNetData[i].id_num
             };
 
         fullDishListAccuracy.push(dishObject);
@@ -58,6 +58,8 @@ async function saveBrain(netToken, net, totalAccuracy, collectionName, minMaxVal
 
     entry.netToken = netToken;
     entry.net = networkJson;
+    entry.trainingDataUnmapped = trainingAndTestDataUnmapped[0];
+    entry.testDataUnmapped = trainingAndTestDataUnmapped[1];
     entry.totalAccuracy = totalAccuracy;
     entry.dishCollection = {
         name: collectionName,

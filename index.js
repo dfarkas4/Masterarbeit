@@ -17,7 +17,8 @@ const Hapi = require('hapi'),
     mapToNetworkData = require('./App/mapToNetworkData'),
     neuralNetwork = require('./App/neuralNetwork'),
     generateNetToken = require('./App/generateNetToken'),
-    saveNoveltyResult = require('./App/saveNoveltyResult');
+    saveNoveltyResult = require('./App/saveNoveltyResult'),
+    getWishList = require('./App/getWishList');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
@@ -203,8 +204,6 @@ server.route({
             collectionName = 'test_collection';
         } else if (currDb === '2') {
             collectionName = 'test_collection2';
-        } else if (currDb === '3') {
-            // TO-DO db3
         } else {
             return 'No Db specified.'
         }
@@ -240,7 +239,7 @@ server.route({
 
         console.log('totalAccuracy', totalAccuracy);
 
-        await neuralNetwork.saveBrain(currNetToken, neuralNet, totalAccuracy, collectionName, minMaxValues);
+        await neuralNetwork.saveBrain(currNetToken, neuralNet, totalAccuracy, collectionName, minMaxValues, splitDishArr);
 
         return 'Thx für die Teilnahme.\n' + JSON.stringify(request.payload);
     }
@@ -256,6 +255,35 @@ server.route({
         };
 
         console.log('RESPONSE', response);
+        return response;
+    }
+});
+
+server.route({
+    method: 'POST',
+    path: '/getwishlist',
+    handler: async (request, h) => {
+        const currDb = request.payload.location;
+        let collectionName,
+            minMaxValues = {};
+
+        if (currDb === 'BERLIN') {
+            collectionName = 'test_collection';
+        } else if (currDb === 'WATERLOO') {
+            collectionName = 'test_collection2';
+        } else {
+            return 'No Db specified.'
+        }
+
+        minMaxValues.minPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, +1);
+        minMaxValues.maxPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, -1);
+        minMaxValues.minDistance = await helperFunctions.getMinOrMaxValue('distance', collectionName, +1);
+        minMaxValues.maxDistance = await helperFunctions.getMinOrMaxValue('distance', collectionName, -1);
+
+        let response = {
+            response: await getWishList(collectionName, minMaxValues)
+        };
+
         return response;
     }
 });

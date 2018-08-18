@@ -19,3 +19,13 @@ function randomString(length, chars) {
 var rString = randomString(12, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 console.log('random string', rString);
+
+const preNoveltyMax = -Math.log2(0.7*(1 / 4) + 0.3*(1 / 4)),
+    preNoveltyMin = -Math.log2(0.7*(4 / 4) + 0.3*(4 / 4));
+
+let preNovelty = -Math.log2(0.7*(4 / 4) + 0.3*(3 / 4));
+
+let asdasd = (preNovelty - preNoveltyMin) / (preNoveltyMax - preNoveltyMin); // (value - min) / (max - min);
+
+console.log('preNovelty', preNovelty);
+console.log('asdasd', asdasd);

@@ -1,7 +1,7 @@
 'use strict';
 
 // BERLIN:
-// price, distance, kitchenstyle[9], dishtype[5]
+// price, distance, kitchenstyle[9], dishtype[5], n_ingredients[4]
 // kitchenstyle:        Griechisch, Deutsch, Türkisch, Amerikanisch, Fast Food, Italienisch, Indisch, Asiatisch, International
 // dishtype:            Hauptspeise, Vorspeise, Fisch, Kleinigkeit, Beilage
 
@@ -28,9 +28,12 @@ const _ = require('lodash'),
     dishTypeEnum = Object.freeze({
         'Hauptspeise': 0,
         'Vorspeise': 1,
-        'Fisch': 2,
-        'Kleinigkeit': 3,
-        'Beilage': 4
+        'Salat': 2,
+        'Suppe': 3,
+        'Beilage': 4,
+        'Pizza': 5,
+        'Dessert': 6,
+        'Sandwich': 7
     }),
     kitchenStyleEnum2 = Object.freeze({
         'Amerikanisch': 0,
@@ -96,7 +99,7 @@ function mapData(rawData, collectionName, minMaxValues, isInputOnly) {
     } else if (collectionName === 'test_collection') {
         // TO-DO implement other two food db variants
         kitchenArr = _.range(9).map(() => 0);
-        dishTypeArr = _.range(5).map(() => 0);
+        dishTypeArr = _.range(8).map(() => 0);
     }
 
     res.push(scaleValue(rawData.price, minMaxValues.minPrice, minMaxValues.maxPrice));
@@ -122,6 +125,10 @@ function mapData(rawData, collectionName, minMaxValues, isInputOnly) {
         res = _.concat(res, kitchenArr);
         dishTypeArr[dishTypeEnum[rawData.type]] = 1;
         res = _.concat(res, dishTypeArr);
+
+        let n_ingredients = rawData.n_ingredients.split('').map(Number);
+
+        res = _.concat(res, n_ingredients);
     }
 
         if (!isInputOnly) {

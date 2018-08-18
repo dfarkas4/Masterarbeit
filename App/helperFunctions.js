@@ -10,11 +10,11 @@ async function getDishesByObjectOfIds(dishIdsObject, collectionName) {
     let dbConnection = await mongoClient.connect(process.env.DB_STR),
         result;
 
-    const dishIdArray = _.map(_.keys(dishIdsObject), (key) => ObjectId(key));
+    const dishIdArray = _.map(_.keys(dishIdsObject), (key) => key);
 
     result = await dbConnection.db()
         .collection(collectionName)
-        .find({"_id" : {"$in" : dishIdArray}})
+        .find({"id_num" : {"$in" : dishIdArray}})
         .toArray();
 
     await dbConnection.close(true);
@@ -27,7 +27,7 @@ function attachNetOutputToDishes(dishes, outputs) {
         let netOutput = {};
 
         //console.log(outputs[dishes[i]._id.toString()], 'qweweqeqwew');
-        if (Number(outputs[dishes[i]._id.toString()]) === 1) {
+        if (Number(outputs[dishes[i].id_num]) === 1) {
             netOutput['yes'] = 1;
         } else {
             netOutput['no'] = 1;

@@ -1,7 +1,7 @@
 <head>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
-<h2 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl.</h2>
+<h1 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl.</h1>
 <b>Ich kenne Gericht XY sehr gut</b>
 <ul>
     <li>Ich stimme gar nicht zu</li>
@@ -16,38 +16,80 @@
     <li>Ich stimme eher zu</li>
     <li>Ich stimme voll und ganz zu</li>
 </ul>
-<h2>Bitte klicke am Ende auf "Senden", um die<br>Umfrage abzuschließen und anschließend<br>am Gewinnspiel teilnehmen zu können.</h2>
+<h1>Bitte klicke am Ende auf "Senden", um die<br>Umfrage abzuschließen und anschließend<br>am Gewinnspiel teilnehmen zu können.</h1>
 
 <form method="post" id="noveltyForm" onsubmit="setCaptcha()" action="/studyresults">
+    <div class="containerBorders datenschutz">
+        <h3>Datenschutz</h3>
+        <p>Wir erheben E-Mail Adressen und speichern diese um Probanten benachrichtigen zu können, falls sie im Gewinnspiel gewonnen haben. Die E-Mail Adressen werden nicht weitergegeben und werden
+            nach der Durchführung der Studie gelöscht.</p>
+        <label class="block"><input type="checkbox" name="datenschutz" value="accepted" required>Ich stimme der Speicherung meiner E-Mail Adresse zu</label>
+    </div>
     <input type="hidden" value="" name="captcha" id="captchaInput" />
     Deine E-Mail Adresse:
     <input type="email" name="email" required>
+    <br>
+    <br>
     {{#each dishes}}
+        <div class="containerBorders">
         <p class="txt"><b>{{title}}</b></p>
         {{#if description_title}}
             <p class="txt">{{description_title}}</p>
         {{/if}}
         <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
-        <span class="txt"><b>Ich kenne {{title}} sehr gut.</b></span><br>
-        <label>stimme gar nicht zu</label>
-        <input type="radio" name="{{id_num}}" value=1 required>
-        <input type="radio" name="{{id_num}}" value=2>
-        <input type="radio" name="{{id_num}}" value=3>
-        <input type="radio" name="{{id_num}}" value=4>
-        <label>stimme voll und ganz zu</label>
-        <br>
-        <span class="txt"><b>Ich habe {{title}} sehr oft gegessen.</b></span><br>
-        <label>stimme gar nicht zu</label>
-        <input type="radio" name="{{id_num}}_gegessen" value=1 required>
-        <input type="radio" name="{{id_num}}_gegessen" value=2>
-        <input type="radio" name="{{id_num}}_gegessen" value=3>
-        <input type="radio" name="{{id_num}}_gegessen" value=4>
-        <label>stimme voll und ganz zu</label>
-        <p class="separator">---------------------------------------------------------------------------------------</p>
+        <table>
+            <tr>
+                <td><!--empty--></td>
+                <td class="tdRadioWidth">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="centerText">stimme gar<br>nicht zu</div>
+                                </td>
+                                <td>
+                                    <div class="customTdWidth"></div>
+                                </td>
+                                <td>
+                                    <div class="centerText">stimme voll<br>zu</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTextWidth">
+                    <span class="txt"><b>Ich kenne {{title}} sehr gut.</b></span>
+                </td>
+                <td class="tdRadioWidth">
+                    <div class="containerCenter">
+                        <input type="radio" name="{{id_num}}" value=1 required>
+                        <input type="radio" name="{{id_num}}" value=2>
+                        <input type="radio" name="{{id_num}}" value=3>
+                        <input type="radio" name="{{id_num}}" value=4>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTextWidth">
+                    <span class="txt"><b>Ich habe {{title}} sehr oft gegessen.</b></span>
+                </td>
+                <td class="tdRadioWidth">
+                    <div class="containerCenter">
+                        <input type="radio" name="{{id_num}}_gegessen" value=1 required>
+                        <input type="radio" name="{{id_num}}_gegessen" value=2>
+                        <input type="radio" name="{{id_num}}_gegessen" value=3>
+                        <input type="radio" name="{{id_num}}_gegessen" value=4>
+                    </div>
+                </td>
+            </tr>
+        </table>
         <input type="hidden" value="{{location}}" name="{{id_num}}_location" />
+        </div>
     {{/each}}
-    <br>
     <div class="g-recaptcha" data-sitekey="6LeMCWkUAAAAAHkXssW0pTp_cGruaxVJAKHtvOog"></div>
+    <br>
     <input class="sendButton" type="submit" value="Senden">
 </form>
 
@@ -59,21 +101,21 @@
 </script>
 
 <style>
-    h2 {
-        color: #8A2BE2;
+    h1 {
+        color: black;/*#8A2BE2;*/
     }
-
     .scaling {
         width:  auto;
-        height: 250px;
+        height: 300px;
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
     }
     body {
-        background-color: #EEF3E2;
+        background-color: #e9ebee;
         display: table-cell;
         vertical-align: middle;
+        font-family: arial,sans-serif;
     }
     html, body {
         height: 100%;
@@ -85,9 +127,6 @@
     .txt {
         max-width: 400px;
         word-wrap: break-word;
-    }
-    .separator {
-        color: #8A2BE2;
     }
     .sendButton {
         -moz-box-shadow:inset 0px 1px 0px 0px #a6827e;
@@ -113,5 +152,31 @@
         padding:6px 24px;
         text-decoration:none;
         text-shadow:0px 1px 0px #4d3534;
+    }
+    .tdTextWidth {
+        width: 500px;
+    }
+    .tdRadioWidth {
+        width: 200px;
+    }
+    .containerBorders {
+        border-style: solid;
+        border-width: thin;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    .centerText {
+        text-align: center;
+    }
+    .containerCenter {
+        margin: auto;
+        width: 50%;
+    }
+    .customTdWidth {
+        width: 35px;
+    }
+    .datenschutz {
+        max-width: 800px;
+        word-wrap: break-word;
     }
 </style>

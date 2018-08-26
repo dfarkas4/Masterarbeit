@@ -9,7 +9,8 @@ function buildInput(payload, metaData) {
     let input = {
             email: metaData.email,
             time: metaData.time,
-            remote_address: metaData.remote_address
+            remote_address: metaData.remote_address,
+            datenschutz: metaData.datenschutz
         },
         dishList = {};
 
@@ -42,7 +43,7 @@ async function saveNoveltyResult(payload, metaData) {
     await dbConnection.db().collection('novelty_scores').insert(input);
     await dbConnection.close(true);
 
-    return 'Thx für die Teilnahme. Du wirst per E-Mail benachrichtigt, falls du gewonnen hast.';
+    return 'Danke für die Teilnahme. Du wirst per E-Mail benachrichtigt, ob du gewonnen hast.';
 }
 
 module.exports = saveNoveltyResult;

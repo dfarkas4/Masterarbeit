@@ -1,6 +1,7 @@
 'use strict';
 
-const request = require('request');
+const request = require('request'),
+    latinSquare = require('latinsquare');
 
 /*
 request('http://api.yummly.com/v1/api/recipe/Classic-Chicken-Soup-2368529?_app_id=6902516a&_app_key=492984fa3dd37d10acb4a440fa29e53f', function (error, response, body) {
@@ -29,3 +30,7 @@ let asdasd = (preNovelty - preNoveltyMin) / (preNoveltyMax - preNoveltyMin); // 
 
 console.log('preNovelty', preNovelty);
 console.log('asdasd', asdasd);
+
+var square2 = latinSquare.generate(5);
+
+console.log(square2);

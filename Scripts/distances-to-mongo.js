@@ -14,7 +14,7 @@ const mongoClient = require('mongodb').MongoClient,
 function getGeoDistance(latitude, longitude) {
     return geolib.getDistance(
         { latitude: latitude, longitude: longitude },
-        { latitude: startingLocations.WATERLOO_LATITUDE, longitude: startingLocations.WATERLOO_LONGITUDE },
+        { latitude: startingLocations.BERLIN_LATITUDE, longitude: startingLocations.BERLIN_LONGITUDE },
     );
 }
 
@@ -34,4 +34,4 @@ async function writeDistancesToDishDb(collectionName) {
     console.log('done');
 }
 
-writeDistancesToDishDb('test_collection2');
+writeDistancesToDishDb('test_collection');

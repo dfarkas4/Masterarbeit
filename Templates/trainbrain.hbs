@@ -1,42 +1,42 @@
-<h2 class="title is-3 txt">Treffe bitte für jedes einzelne Gericht eine Auswahl. Beachte dabei die dargestellten
-    Informationen zu den Gerichten, die dir interessant vorkommen könnten, wie z.B. Preis oder Küche</h2>
+<h1 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl. Beachte dabei die dargestellten
+    Informationen zu den Gerichten, die deine Entscheidungen beeinflussen könnten, wie z.B. Preis oder Küche</h1>
 <b>Ich würde das Gericht essen bzw. ausprobieren</b>
 <ul>
-    <li>Ich stimme nicht zu</li>
     <li>Ich stimme zu</li>
+    <li>Ich stimme nicht zu</li>
 </ul>
-<h2>Am Ende klicke auf das 'Senden' Knopf.</h2>
+<h1>Am Ende klicke auf das 'Senden' Knopf.</h1>
 
 <form method="post" action="/trainbrainresults">
     <input type="hidden" value={{dbCollection}} name="dbCollection" />
-    <input type="hidden" value={{netToken}} name="netToken" />
-    {{#each dishes}}
-        <p class="txt"><b>{{title}}</b></p>
-        {{#if description_title}}
-            <p class="txt">{{description_title}}</p>
-        {{/if}}
-        <p class="txt">{{restaurant}}</p>
-        <p class="txt">{{adress}}</p>
-        <p class="txt"><b>Preis:</b> {{price}}</p>
-        <p class="txt"><b>Entfernung zu Fuß in Meter:</b> {{distance}}</p>
-        <p class="txt"><b>Küche:</b> {{kitchen_style}}</p>
-        <p class="txt"><b>Gerichttyp:</b> {{type}}</p>
-        <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
-        <label>nicht essen</label>
-        <input type='radio' name="{{id_num}}" value=0 required>
-        <input type="radio" name="{{id_num}}" value=1>
-        <label>essen</label>
-        <p class="separator">---------------------------------------------------------------------------------------</p>
-    {{/each}}
+    Dein User-Token:
+    <input type="text" name="netToken" required>
     <br>
+    <br>
+    {{#each dishes}}
+        <div class="containerBorders">
+            <p class="txt"><b>{{title}}</b></p>
+            {{#if description_title}}
+                <p class="txt">{{description_title}}</p>
+            {{/if}}
+            <p class="txt"><b>Restaurant:</b> {{restaurant}}</p>
+            <p class="txt"><b>Preis:</b> {{price}}</p>
+            <p class="txt"><b>Entfernung zu Fuß in Meter:</b> {{distance}}</p>
+            <p class="txt"><b>Küche:</b> {{kitchen_style}}</p>
+            <p class="txt"><b>Gerichttyp:</b> {{type}}</p>
+            <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
+            <label class="block"><input type="radio" name="{{id_num}}" value=1>Ich würde das Gericht essen bzw. ausprobieren</label>
+            <label class="block"><input type='radio' name="{{id_num}}" value=0 required>Ich würde das Gericht nicht essen bzw. ausprobieren</label>
+        </div>
+    {{/each}}
     <input class="sendButton" type="submit" value="Senden">
 </form>
 
 <style>
-    h2 {
-        color: #8A2BE2;
+    h1 {
+        color: black;
+        width: 650px;
     }
-
     .scaling {
         width:  auto;
         height: 250px;
@@ -45,9 +45,10 @@
         background-size: cover;
     }
     body {
-        background-color: #EEF3E2;
+        background-color: #e9ebee;
         display: table-cell;
         vertical-align: middle;
+        font-family: arial,sans-serif;
     }
     html, body {
         height: 100%;
@@ -87,5 +88,14 @@
         padding:6px 24px;
         text-decoration:none;
         text-shadow:0px 1px 0px #4d3534;
+    }
+    .containerBorders {
+        border-style: solid;
+        border-width: thin;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    .block {
+        display: block;
     }
 </style>

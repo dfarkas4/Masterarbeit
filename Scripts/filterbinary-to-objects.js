@@ -45,4 +45,4 @@ async function convertFilterBinaryToObjects(collectionName) {
     console.log('done');
 }
 
-convertFilterBinaryToObjects('test_collection2');
+convertFilterBinaryToObjects('test_collection');

@@ -18,14 +18,16 @@ const Hapi = require('hapi'),
     neuralNetwork = require('./App/neuralNetwork'),
     generateNetToken = require('./App/generateNetToken'),
     saveNoveltyResult = require('./App/saveNoveltyResult'),
-    getWishList = require('./App/getWishList');
+    getWishList = require('./App/getWishList'),
+    getStudySequence = require('./App/getStudySequence');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
     address: '0.0.0.0'
 });
 
-server.route({
+// Not used anymore due to self generated userToken
+/*server.route({
     method: 'GET',
     path: '/generatenettoken',
     handler: async (request, h) => {
@@ -33,6 +35,14 @@ server.route({
             response: await generateNetToken()
         };
         return response;
+    }
+});*/
+
+server.route({
+    method: 'POST',
+    path: '/wakeup',
+    handler: async (request, h) => {
+        return 'ich bin wach';
     }
 });
 
@@ -112,12 +122,14 @@ server.route({
                     const metaData = {
                         remote_address: request.info.remoteAddress,
                         time: res.challenge_ts,
-                        email: request.payload.email
+                        email: request.payload.email,
+                        datenschutz: request.payload.datenschutz
                     };
 
                     delete request.payload.email;
                     delete request.payload.captcha;
                     delete request.payload['g-recaptcha-response'];
+                    delete request.payload.datenschutz;
 
                     return await saveNoveltyResult(request.payload, metaData);
                 } else {
@@ -134,37 +146,14 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/trainbrain/{db}/{token}',
+    path: '/trainbrain/{db}',
     handler: async (request, h) => {
         let collection;
-
-        if (_.isUndefined(request.params.token)) {
-            return 'Token is missing.'
-        }
-
-        let netToken = await new Promise((resolve, reject) => {
-            netTokenCollection.find({ token: request.params.token }, { token: 1, _id: 0 }, function (err, docs) {
-                if (err) {
-                    return 'Token not found.';
-                    reject(err);
-                } else {
-                    resolve(docs);
-                }
-            });
-        });
-
-        if (_.isEmpty(netToken)) {
-            return 'Token not found.';
-        }
-
-        netToken = netToken[0].token;
 
         if (request.params.db === '1') {
             collection = testCollection;
         } else if (request.params.db === '2') {
             collection = testCollection2;
-        } else if (request.params.db === '3') {
-            // TO-DO db3
         } else {
             return 'No Db specified in url.'
         }
@@ -179,12 +168,11 @@ server.route({
             });
         });
 
-        const randomDishes = getRandomDishList(db, 20);
+        const randomDishes = getRandomDishList(db, 60);
 
         const dishInput = {
             dishes: randomDishes,
-            dbCollection: request.params.db,
-            netToken: netToken
+            dbCollection: request.params.db
         };
 
         return h.view('trainbrain', dishInput);
@@ -197,6 +185,8 @@ server.route({
     handler: async (request, h) => {
         const currDb = request.payload.dbCollection,
             currNetToken = request.payload.netToken;
+
+        await generateNetToken(currNetToken);
 
         let collectionName;
 
@@ -215,7 +205,7 @@ server.route({
             minMaxValues = {};
         helperFunctions.attachNetOutputToDishes(dishArr, request.payload);
 
-        let splitDishArr = _.chunk(dishArr, 15); // trainingdata, testdata
+        let splitDishArr = _.chunk(dishArr, 45); // trainingdata, testdata
 
         minMaxValues.minPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, +1);
         minMaxValues.maxPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, -1);
@@ -227,21 +217,13 @@ server.route({
 
         let neuralNet = neuralNetwork.trainBrain(mappedNetworkTrainingDishArr);
 
-        /*for (let i = 0; i < mappedNetworkTestDishArr.length; i++) {
-            const output = neuralNetwork.testBrain(netwuuurk, mappedNetworkTestDishArr[i]);
-
-            console.log('dish: ', splitDishArr[1][i].title);
-            console.log('suggested accuracy', output);
-            console.log('real accuracy', splitDishArr[1][i].netOutput);
-        }*/
-
         const totalAccuracy = neuralNetwork.getAccuracy(neuralNet, mappedNetworkTestDishArr, splitDishArr[1]);
 
         console.log('totalAccuracy', totalAccuracy);
 
         await neuralNetwork.saveBrain(currNetToken, neuralNet, totalAccuracy, collectionName, minMaxValues, splitDishArr);
 
-        return 'Thx für die Teilnahme.\n' + JSON.stringify(request.payload);
+        return 'Training wurde erfolgreich abgeschlossen. Danke für die Teilnahme.';
     }
 });
 
@@ -249,10 +231,35 @@ server.route({
     method: 'POST',
     path: '/filteredresults',
     handler: async (request, h) => {
+        if (_.isUndefined(request.payload.token)) {
+            console.log('Token is missing.'); //return 'Token is missing.'; reverse later
+        }
+
+        let netToken = await new Promise((resolve, reject) => {
+            netTokenCollection.find({ token: request.payload.token }, { token: 1, _id: 0 }, function (err, docs) {
+                if (err) {
+                    console.log('Token not found.'); //return 'Token not found.'; reverse later
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+        }),
+        studySequence = '';
+
+        if (_.isEmpty(netToken)) {
+            console.log('Token not found.'); //return 'Token not found.'; reverse later
+        } else {
+            netToken = netToken[0].token;
+            studySequence = await getStudySequence(netToken, request.payload.location);
+        }
+
         console.log(request.payload); // TO-DO remove this later
         let response = {
             response: await getFilteredResults(request.payload)
         };
+
+        response.studySequence = studySequence;
 
         console.log('RESPONSE', response);
         return response;
@@ -275,6 +282,29 @@ server.route({
             return 'No Db specified.'
         }
 
+        if (_.isUndefined(request.payload.token)) {
+            console.log('Token is missing.'); //return 'Token is missing.'; reverse later
+        }
+
+        let netToken = await new Promise((resolve, reject) => {
+            netTokenCollection.find({ token: request.payload.token }, { token: 1, _id: 0 }, function (err, docs) {
+                if (err) {
+                    console.log('Token not found.'); //return 'Token not found.'; reverse later
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+            }),
+            studySequence = '';
+
+        if (_.isEmpty(netToken)) {
+            console.log('Token not found.'); //return 'Token not found.'; reverse later
+        } else {
+            netToken = netToken[0].token;
+            studySequence = await getStudySequence(netToken, request.payload.location);
+        }
+
         minMaxValues.minPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, +1);
         minMaxValues.maxPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, -1);
         minMaxValues.minDistance = await helperFunctions.getMinOrMaxValue('distance', collectionName, +1);
@@ -283,6 +313,8 @@ server.route({
         let response = {
             response: await getWishList(collectionName, minMaxValues)
         };
+
+        response.studySequence = studySequence;
 
         return response;
     }

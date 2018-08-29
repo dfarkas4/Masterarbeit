@@ -2,19 +2,19 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <h1 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl.</h1>
-<b>Ich kenne Gericht XY sehr gut</b>
+<b>Mir ist Gericht XY sehr bekannt</b>
 <ul>
-    <li>Ich stimme gar nicht zu</li>
-    <li>Ich stimme eher nicht zu</li>
-    <li>Ich stimme eher zu</li>
-    <li>Ich stimme voll und ganz zu</li>
+    <li>Trifft überhaupt nicht zu</li>
+    <li>Trifft eher nicht zu</li>
+    <li>Trifft eher zu</li>
+    <li>Trifft voll und ganz zu</li>
 </ul>
 <b>Ich habe Gericht XY sehr oft gegessen</b>
 <ul>
-    <li>Ich stimme gar nicht zu</li>
-    <li>Ich stimme eher nicht zu</li>
-    <li>Ich stimme eher zu</li>
-    <li>Ich stimme voll und ganz zu</li>
+    <li>Trifft überhaupt nicht zu</li>
+    <li>Trifft eher nicht zu</li>
+    <li>Trifft eher zu</li>
+    <li>Trifft voll und ganz zu</li>
 </ul>
 <h1>Bitte klicke am Ende auf "Senden", um die<br>Umfrage abzuschließen und anschließend<br>am Gewinnspiel teilnehmen zu können.</h1>
 
@@ -23,7 +23,7 @@
         <h3>Informationen</h3>
         <!--<p>Wir erheben E-Mail Adressen und speichern diese um Probanten benachrichtigen zu können, falls sie im Gewinnspiel gewonnen haben. Die E-Mail Adressen werden nicht weitergegeben und werden
             nach der Durchführung der Studie gelöscht.</p>-->
-        <p>Du kannst deine E-Mail Adresse eingeben, wenn du am Gewinnspiel teilnehmen möchtest. Die E-Mail Adresse wird nur für das Gewinnspiel genutzt und die Angabe dessen ist optional.</p>
+        <p>Du kannst deine <b>E-Mail Adresse eingeben, wenn du am Gewinnspiel teilnehmen möchtest.</b> Die E-Mail Adresse wird nur für das Gewinnspiel genutzt und die <b>Angabe dessen ist optional.</b></p>
         <p>Die Fragen zum Alter, Geschlecht und Bildungsstatus dienen zur Studie und sind anonymisiert. In diesem Kontext heißt das, dass man diese Fragen zu der angegebenen E-Mail Adresse nicht zuordnen kann.</p>
         <p>Am ende der Studie verlosen wir <b>3 Amazon Gutscheine im Wert von je 20 €</b> an zufällige Teilnehmer. Falls ihr gewonnen habt, werdet ihr per E-Mail benachrichtigt.</p>
 <!--        <label class="block"><input type="checkbox" name="datenschutz" value="accepted" required>Ich stimme der Speicherung meiner E-Mail Adresse zu</label>-->
@@ -61,7 +61,8 @@
             <p class="txt">{{description_title}}</p>
         {{/if}}
         <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br>
-            <p style="font-style: italic;">(Wenn ich das Gericht so dargestellt auf einer Speisekarte sehen würde, würde ich wissen was das ist)</p>
+            <p style="font-style: italic;"><b>Erklärung für Auswahl 1:</b><br>Wenn ich das Gericht so dargestellt auf einer Speisekarte sehen würde, würde ich wissen was das ist</p>
+            <p style="font-style: italic;"><b>Erklärung für Auswahl 2:</b><br>Das dargestellte Gericht habe ich schon sehr oft gegessen</p>
         <table>
             <tr>
                 <td><!--empty--></td>
@@ -85,7 +86,7 @@
             </tr>
             <tr>
                 <td class="tdTextWidth">
-                    <span class="txt"><b>Ich kenne {{title}} sehr gut.</b></span>
+                    <span class="txt"><b>Mir ist {{title}} sehr bekannt.</b></span>
                 </td>
                 <td class="tdRadioWidth">
                     <fieldset>

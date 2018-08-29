@@ -81,7 +81,7 @@ server.route({
 
         const dbs = _.union(newDb1, newDb2);
 
-        const randomDishes = getRandomDishList(dbs, 5);
+        const randomDishes = getRandomDishList(dbs, 50);
 
         const studyInput = {
             dishes: randomDishes

@@ -20,23 +20,48 @@
 
 <form method="post" id="noveltyForm" onsubmit="setCaptcha()" action="/studyresults">
     <div class="containerBorders datenschutz">
-        <h3>Datenschutz</h3>
-        <p>Wir erheben E-Mail Adressen und speichern diese um Probanten benachrichtigen zu können, falls sie im Gewinnspiel gewonnen haben. Die E-Mail Adressen werden nicht weitergegeben und werden
-            nach der Durchführung der Studie gelöscht.</p>
-        <label class="block"><input type="checkbox" name="datenschutz" value="accepted" required>Ich stimme der Speicherung meiner E-Mail Adresse zu</label>
+        <h3>Informationen</h3>
+        <!--<p>Wir erheben E-Mail Adressen und speichern diese um Probanten benachrichtigen zu können, falls sie im Gewinnspiel gewonnen haben. Die E-Mail Adressen werden nicht weitergegeben und werden
+            nach der Durchführung der Studie gelöscht.</p>-->
+        <p>Du kannst deine E-Mail Adresse eingeben, wenn du am Gewinnspiel teilnehmen möchtest. Die E-Mail Adresse wird nur für das Gewinnspiel genutzt und die Angabe dessen ist optional.</p>
+        <p>Die Fragen zum Alter, Geschlecht und Bildungsstatus dienen zur Studie und sind anonymisiert. In diesem Kontext heißt das, dass man diese Fragen zu der angegebenen E-Mail Adresse nicht zuordnen kann.</p>
+        <p>Am ende der Studie verlosen wir <b>3 Amazon Gutscheine im Wert von je 20 €</b> an zufällige Teilnehmer. Falls ihr gewonnen habt, werdet ihr per E-Mail benachrichtigt.</p>
+<!--        <label class="block"><input type="checkbox" name="datenschutz" value="accepted" required>Ich stimme der Speicherung meiner E-Mail Adresse zu</label>-->
     </div>
     <input type="hidden" value="" name="captcha" id="captchaInput" />
-    Deine E-Mail Adresse:
-    <input type="email" name="email" required>
+    <b>Deine E-Mail Adresse (optional):</b>
+    <input type="email" name="email"><br><br>
+    <b>Dein Alter:</b>
+    <input type="number" name="alter" min="1" max="99" required><br><br>
+    <b>Dein Geschlecht:</b>
+    <label class="block"><input type="radio" name="geschlecht" value=m>männlich</label>
+    <label class="block"><input type='radio' name="geschlecht" value=w required>weiblich</label>
     <br>
-    <br>
+    <b>Dein höchster Bildungsabschluss:</b>
+    <select name="bildung">
+        <option value="" disabled selected hidden>treffe einen Auswahl..</option>
+        <option value="Kein Schulabschluss">Kein Schulabschluss</option>
+        <option value="Grund-/Hauptschulabschluss">Grund-/Hauptschulabschluss</option>
+        <option value="Realschule (Mittlere Reife)">Realschule (Mittlere Reife)</option>
+        <option value="Gymnasium (Abitur)">Gymnasium (Abitur)</option>
+        <option value="Abgeschlossene Ausbildung">Abgeschlossene Ausbildung</option>
+        <option value="Fachhochschulabschluss">Fachhochschulabschluss</option>
+        <option value="Hochschule (Bachelor)">Hochschule (Bachelor)</option>
+        <option value="Hochschule (Master)">Hochschule (Master)</option>
+        <option value="Hochschule (Diplom)">Hochschule (Diplom)</option>
+        <option value="Hochschule (Magister)">Hochschule (Magister)</option>
+        <option value="Hochschule (Promotion)">Hochschule (Promotion)</option>
+        <option value="Sonstiges">Sonstiges</option>
+    </select>
+    <br><br>
     {{#each dishes}}
         <div class="containerBorders">
         <p class="txt"><b>{{title}}</b></p>
         {{#if description_title}}
             <p class="txt">{{description_title}}</p>
         {{/if}}
-        <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br><br>
+        <img class="scaling" src='{{image_url}}' alt="Bild fehlt."><br>
+            <p style="font-style: italic;">(Wenn ich das Gericht so dargestellt auf einer Speisekarte sehen würde, würde ich wissen was das ist)</p>
         <table>
             <tr>
                 <td><!--empty--></td>
@@ -172,10 +197,6 @@
     .centerText {
         text-align: center;
     }
-    /*.containerCenter {
-        margin: auto;
-        width: 80%;
-    }*/
     .customTdWidth {
         width: 40px;
     }
@@ -186,5 +207,8 @@
     fieldset {
         text-align: center;
         border: 0;
+    }
+    .block {
+        display: block;
     }
 </style>

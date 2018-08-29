@@ -3,14 +3,18 @@
 require('dotenv').config();
 
 const mongoClient = require('mongodb').MongoClient,
-    _ = require('lodash');
+    _ = require('lodash'),
+    saveEmail = require('./saveEmail');
 
 function buildInput(payload, metaData) {
     let input = {
-            email: metaData.email,
+            /*email: metaData.email,*/
             time: metaData.time,
-            remote_address: metaData.remote_address,
-            datenschutz: metaData.datenschutz
+            /*remote_address: metaData.remote_address,*/
+            /*datenschutz: metaData.datenschutz*/
+            age: metaData.age,
+            sex: metaData.sex,
+            education: metaData.education
         },
         dishList = {};
 
@@ -30,12 +34,19 @@ function buildInput(payload, metaData) {
 }
 
 async function saveNoveltyResult(payload, metaData) {
-    let dbConnection = await mongoClient.connect(process.env.DB_STR);
+    let dbConnection = await mongoClient.connect(process.env.DB_STR),
+        dbConnectionEmail = await mongoClient.connect(process.env.DB_EMAIL);
 
-    const emailCount = await dbConnection.db().collection('novelty_scores').find({ email: metaData.email }).count();
+    if (metaData.email) {
+        const emailCount = await dbConnectionEmail.db().collection('novelty_emails').find({ email: metaData.email }).count();
 
-    if (emailCount > 0) {
-        return 'Diese E-Mail Adresse wurde schon verwendet.'
+        await dbConnectionEmail.close(true);
+
+        if (emailCount > 0) {
+            return 'Diese E-Mail Adresse wurde schon verwendet.'
+        }
+
+        await saveEmail(metaData.email, metaData.remoteAddress);
     }
 
     const input = buildInput(payload, metaData);

@@ -19,7 +19,8 @@ const Hapi = require('hapi'),
     generateNetToken = require('./App/generateNetToken'),
     saveNoveltyResult = require('./App/saveNoveltyResult'),
     getWishList = require('./App/getWishList'),
-    getStudySequence = require('./App/getStudySequence');
+    getStudySequence = require('./App/getStudySequence'),
+    saveEmail = require('./App/saveEmail');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
@@ -80,7 +81,7 @@ server.route({
 
         const dbs = _.union(newDb1, newDb2);
 
-        const randomDishes = getRandomDishList(dbs, 50);
+        const randomDishes = getRandomDishList(dbs, 5);
 
         const studyInput = {
             dishes: randomDishes
@@ -120,23 +121,37 @@ server.route({
             .then(async function (res) {
                 if (res.success) {
                     const metaData = {
-                        remote_address: request.info.remoteAddress,
+                        /*remote_address: request.info.remoteAddress,*/
                         time: res.challenge_ts,
-                        email: request.payload.email,
-                        datenschutz: request.payload.datenschutz
+                        /*email: request.payload.email,
+                        datenschutz: request.payload.datenschutz*/
+                        age: request.payload.alter,
+                        sex: request.payload.geschlecht,
+                        education: request.payload.bildung,
+                        remoteAddress: request.info.remoteAddress
                     };
+
+                    let email = undefined;
+                    if (!_.isEmpty(request.payload.email) && !_.isUndefined(request.payload.email)) {
+                        metaData.email = request.payload.email;
+                    }
 
                     delete request.payload.email;
                     delete request.payload.captcha;
                     delete request.payload['g-recaptcha-response'];
-                    delete request.payload.datenschutz;
+                    delete request.payload.alter;
+                    delete request.payload.geschlecht;
+                    delete request.payload.bildung;
+                    /*delete request.payload.datenschutz;*/
 
                     return await saveNoveltyResult(request.payload, metaData);
                 } else {
+                    console.log('fgt1');
                     return 'failed captcha verification';
                 }
             })
             .catch(function (err) {
+                console.log(err);
                 return 'failed captcha verification';
             });
 

@@ -45,13 +45,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <div class="centerText">stimme gar<br>nicht zu</div>
+                                    <div class="centerText">trifft überhaupt<br>nicht zu</div>
                                 </td>
                                 <td>
                                     <div class="customTdWidth"></div>
                                 </td>
                                 <td>
-                                    <div class="centerText">stimme voll<br>zu</div>
+                                    <div class="centerText">trifft voll und<br>ganz zu</div>
                                 </td>
                             </tr>
                         </table>
@@ -63,12 +63,14 @@
                     <span class="txt"><b>Ich kenne {{title}} sehr gut.</b></span>
                 </td>
                 <td class="tdRadioWidth">
-                    <div class="containerCenter">
-                        <input type="radio" name="{{id_num}}" value=1 required>
-                        <input type="radio" name="{{id_num}}" value=2>
-                        <input type="radio" name="{{id_num}}" value=3>
-                        <input type="radio" name="{{id_num}}" value=4>
-                    </div>
+                    <fieldset>
+                        <div>
+                            <input type="radio" name="{{id_num}}" value=1 required>
+                            <input type="radio" name="{{id_num}}" value=2>
+                            <input type="radio" name="{{id_num}}" value=3>
+                            <input type="radio" name="{{id_num}}" value=4>
+                        </div>
+                    </fieldset>
                 </td>
             </tr>
             <tr>
@@ -76,12 +78,14 @@
                     <span class="txt"><b>Ich habe {{title}} sehr oft gegessen.</b></span>
                 </td>
                 <td class="tdRadioWidth">
-                    <div class="containerCenter">
-                        <input type="radio" name="{{id_num}}_gegessen" value=1 required>
-                        <input type="radio" name="{{id_num}}_gegessen" value=2>
-                        <input type="radio" name="{{id_num}}_gegessen" value=3>
-                        <input type="radio" name="{{id_num}}_gegessen" value=4>
-                    </div>
+                    <fieldset>
+                        <div>
+                            <input type="radio" name="{{id_num}}_gegessen" value=1 required>
+                            <input type="radio" name="{{id_num}}_gegessen" value=2>
+                            <input type="radio" name="{{id_num}}_gegessen" value=3>
+                            <input type="radio" name="{{id_num}}_gegessen" value=4>
+                        </div>
+                    </fieldset>
                 </td>
             </tr>
         </table>
@@ -168,15 +172,19 @@
     .centerText {
         text-align: center;
     }
-    .containerCenter {
+    /*.containerCenter {
         margin: auto;
         width: 80%;
-    }
+    }*/
     .customTdWidth {
-        width: 35px;
+        width: 40px;
     }
     .datenschutz {
         max-width: 800px;
         word-wrap: break-word;
+    }
+    fieldset {
+        text-align: center;
+        border: 0;
     }
 </style>

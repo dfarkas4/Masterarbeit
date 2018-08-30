@@ -1,7 +1,7 @@
 <head>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
-<h1 class="title is-3">Treffe bitte für jedes einzelne Gericht eine Auswahl.</h1>
+<h1 class="title is-3">Triff bitte für jedes einzelne Gericht eine Auswahl.</h1>
 <b>Mir ist Gericht XY sehr bekannt</b>
 <ul>
     <li>Trifft überhaupt nicht zu</li>
@@ -24,8 +24,8 @@
         <!--<p>Wir erheben E-Mail Adressen und speichern diese um Probanten benachrichtigen zu können, falls sie im Gewinnspiel gewonnen haben. Die E-Mail Adressen werden nicht weitergegeben und werden
             nach der Durchführung der Studie gelöscht.</p>-->
         <p>Du kannst deine <b>E-Mail Adresse eingeben, wenn du am Gewinnspiel teilnehmen möchtest.</b> Die E-Mail Adresse wird nur für das Gewinnspiel genutzt und die <b>Angabe dessen ist optional.</b></p>
-        <p>Die Fragen zum Alter, Geschlecht und Bildungsstatus dienen zur Studie und sind anonymisiert. In diesem Kontext heißt das, dass man diese Fragen zu der angegebenen E-Mail Adresse nicht zuordnen kann.</p>
-        <p>Am ende der Studie verlosen wir <b>3 Amazon Gutscheine im Wert von je 20 €</b> an zufällige Teilnehmer. Falls ihr gewonnen habt, werdet ihr per E-Mail benachrichtigt.</p>
+        <p>Die Fragen zum Alter, Geschlecht und Bildung werden anonymisiert gespeichert. Alle Daten werden zu Studienzwecken erhoben.</p>
+        <p>Am Ende der Studie verlosen wir <b>3 Amazon Gutscheine im Wert von je 20 €</b> an zufällige Teilnehmer. Falls ihr gewonnen habt, werdet ihr per E-Mail benachrichtigt.</p>
 <!--        <label class="block"><input type="checkbox" name="datenschutz" value="accepted" required>Ich stimme der Speicherung meiner E-Mail Adresse zu</label>-->
     </div>
     <input type="hidden" value="" name="captcha" id="captchaInput" />
@@ -35,11 +35,12 @@
     <input type="number" name="alter" min="1" max="99" required><br><br>
     <b>Dein Geschlecht:</b>
     <label class="block"><input type="radio" name="geschlecht" value=m>männlich</label>
+    <span style="height: 10px;"></span>
     <label class="block"><input type='radio' name="geschlecht" value=w required>weiblich</label>
     <br>
     <b>Dein höchster Bildungsabschluss:</b>
     <select name="bildung">
-        <option value="" disabled selected hidden>treffe einen Auswahl..</option>
+        <option value="" disabled selected hidden>Triff einen Auswahl..</option>
         <option value="Kein Schulabschluss">Kein Schulabschluss</option>
         <option value="Grund-/Hauptschulabschluss">Grund-/Hauptschulabschluss</option>
         <option value="Realschule (Mittlere Reife)">Realschule (Mittlere Reife)</option>
@@ -211,10 +212,12 @@
     }
     .block {
         display: block;
+        margin: 10px 20px 0px 0px;
     }
     input[type="radio"] {
-        -ms-transform: scale(1.5); /* IE 9 */
-        -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
-        transform: scale(1.5);
+        -ms-transform: scale(2); /* IE 9 */
+        -webkit-transform: scale(2); /* Chrome, Safari, Opera */
+        transform: scale(2);
+        margin-right: 10px;
     }
 </style>

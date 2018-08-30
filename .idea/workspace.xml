@@ -48,8 +48,11 @@
       <file leaf-file-name="novelty.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="186" column="16" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="16" />
+            <state relative-caret-position="298">
+              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#form#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,14 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>set</find>
-      <find>background</find>
-      <find>customTdWidth</find>
-      <find>text</find>
-      <find>adresse</find>
-      <find>h2</find>
-      <find>is-3</find>
-      <find>title</find>
       <find>txt</find>
       <find>neural_net_token</find>
       <find>upsert</find>
@@ -150,6 +145,14 @@
       <find>eingeben</find>
       <find>5</find>
       <find>385</find>
+      <find>treffe</find>
+      <find>die fragen zum</find>
+      <find>dienen</find>
+      <find>alle daten</find>
+      <find>am ende der</find>
+      <find>triff</find>
+      <find>treffe einen</find>
+      <find>triff einen</find>
     </findStrings>
     <replaceStrings>
       <replace>dishMap</replace>
@@ -227,7 +230,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="3" />
     <option name="y" value="2" />
-    <option name="width" value="1255" />
+    <option name="width" value="1821" />
     <option name="height" value="1027" />
   </component>
   <component name="ProjectView">
@@ -339,7 +342,7 @@
       <workItem from="1535216429027" duration="32855000" />
       <workItem from="1535477297090" duration="8229000" />
       <workItem from="1535579610826" duration="3649000" />
-      <workItem from="1535628144911" duration="203000" />
+      <workItem from="1535628144911" duration="1587000" />
     </task>
     <task id="LOCAL-00001" summary="Add csv to json to mongo script.&#10;Add tester file to perform tests.">
       <created>1531007904614</created>
@@ -516,17 +519,24 @@
       <option name="project" value="LOCAL" />
       <updated>1535584797824</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Change radi obutton size.">
+      <created>1535628391911</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1535628391912</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274433000" />
+    <option name="totallyTimeSpent" value="275817000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="2" width="1255" height="1027" extended-state="0" />
+    <frame x="3" y="2" width="1821" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19474116" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13292204" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -578,7 +588,8 @@
     <MESSAGE value="Test novelty hbs width attempt 2." />
     <MESSAGE value="Implement new novelty features." />
     <MESSAGE value="Push final novelty implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Push final novelty implementation." />
+    <MESSAGE value="Change radi obutton size." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change radi obutton size." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -882,8 +893,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="186" column="16" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="16" />
+        <state relative-caret-position="298">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#form#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/tester.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/tester.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/novelty.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/novelty.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,7 +30,7 @@
       <file leaf-file-name="novelty-to-mongo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/novelty-to-mongo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="830">
+            <state relative-caret-position="1020">
               <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
             </state>
           </provider>
@@ -46,23 +45,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="novelty.hbs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="novelty.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="175" column="30" selection-start-line="175" selection-start-column="30" selection-end-line="175" selection-end-column="30" />
-              <folding>
-                <element signature="n#style#0;n#p#2;n#div#1;n#form#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#3;n#div#1;n#form#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="164">
+              <caret line="186" column="16" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
+            <state relative-caret-position="43">
               <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
             </state>
           </provider>
@@ -107,7 +102,7 @@
       <file leaf-file-name="saveNoveltyResult.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/saveNoveltyResult.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
+            <state relative-caret-position="816">
               <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
             </state>
           </provider>
@@ -198,12 +193,12 @@
         <option value="$PROJECT_DIR$/Scripts/tester.js" />
         <option value="$PROJECT_DIR$/App/saveEmail.js" />
         <option value="$PROJECT_DIR$/App/saveNoveltyResult.js" />
-        <option value="$PROJECT_DIR$/Templates/novelty.hbs" />
         <option value="$PROJECT_DIR$/Scripts/string-to-number.js" />
         <option value="$PROJECT_DIR$/Scripts/filterbinary-to-objects.js" />
         <option value="$PROJECT_DIR$/Scripts/distances-to-mongo.js" />
         <option value="$PROJECT_DIR$/Scripts/csv-to-mongo.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/Templates/novelty.hbs" />
       </list>
     </option>
   </component>
@@ -232,7 +227,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="3" />
     <option name="y" value="2" />
-    <option name="width" value="1921" />
+    <option name="width" value="1255" />
     <option name="height" value="1027" />
   </component>
   <component name="ProjectView">
@@ -240,7 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,6 +261,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -343,7 +338,8 @@
       <workItem from="1534846265056" duration="150000" />
       <workItem from="1535216429027" duration="32855000" />
       <workItem from="1535477297090" duration="8229000" />
-      <workItem from="1535579610826" duration="2985000" />
+      <workItem from="1535579610826" duration="3649000" />
+      <workItem from="1535628144911" duration="203000" />
     </task>
     <task id="LOCAL-00001" summary="Add csv to json to mongo script.&#10;Add tester file to perform tests.">
       <created>1531007904614</created>
@@ -513,17 +509,24 @@
       <option name="project" value="LOCAL" />
       <updated>1535515922373</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Push final novelty implementation.">
+      <created>1535584797823</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1535584797824</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273566000" />
+    <option name="totallyTimeSpent" value="274433000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="2" width="1921" height="1027" extended-state="0" />
+    <frame x="3" y="2" width="1255" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12586299" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19474116" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -574,7 +577,8 @@
     <MESSAGE value="Test novelty hbs width attempt 1." />
     <MESSAGE value="Test novelty hbs width attempt 2." />
     <MESSAGE value="Implement new novelty features." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement new novelty features." />
+    <MESSAGE value="Push final novelty implementation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Push final novelty implementation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -829,14 +833,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/saveNoveltyResult.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
+        <state relative-caret-position="816">
           <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/novelty-to-mongo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
+        <state relative-caret-position="1020">
           <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
         </state>
       </provider>
@@ -869,21 +873,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="175" column="30" selection-start-line="175" selection-start-column="30" selection-end-line="175" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#p#2;n#div#1;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#3;n#div#1;n#form#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="43">
+          <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/Templates/novelty.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
+        <state relative-caret-position="164">
+          <caret line="186" column="16" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="16" />
         </state>
       </provider>
     </entry>

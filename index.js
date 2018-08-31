@@ -335,6 +335,41 @@ server.route({
     }
 });
 
+server.route({
+    method: 'POST',
+    path: '/getsequence',
+    handler: async (request, h) => {
+        if (_.isUndefined(request.payload.token)) {
+            return 'Token is missing.';
+        }
+
+        let netToken = await new Promise((resolve, reject) => {
+                netTokenCollection.find({ token: request.payload.token }, { token: 1, _id: 0 }, function (err, docs) {
+                    if (err) {
+                        console.log('Token not found.'); //return 'Token not found.'; reverse later
+                        reject(err);
+                    } else {
+                        resolve(docs);
+                    }
+                });
+            }),
+            studySequence = '';
+
+        if (_.isEmpty(netToken)) {
+            return 'Token not found.';
+        } else {
+            netToken = netToken[0].token;
+            studySequence = await getStudySequence(netToken);
+        }
+
+        let response = {
+            response: studySequence
+        };
+
+        return response;
+    }
+});
+
 const init = async () => {
 
     await server.register(require('vision'));

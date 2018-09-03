@@ -3,7 +3,8 @@
 require('dotenv').config();
 
 const mongoClient = require('mongodb').MongoClient,
-    _ = require('lodash');
+    _ = require('lodash'),
+    getScenarioSequence = require('./getScenarioSequence');
 
 async function getStudySequence(userToken) {
     let dbConnection = await mongoClient.connect(process.env.DB_STR),
@@ -27,6 +28,8 @@ async function getStudySequence(userToken) {
                     "current_starting_location": currSequence.currentStartingLocation
             }}
         );
+        let scenarioSequence = await getScenarioSequence(dbConnection);
+        currSequence.scenarioSequence = scenarioSequence;
     }
 
     return currSequence;

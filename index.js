@@ -19,8 +19,7 @@ const Hapi = require('hapi'),
     generateNetToken = require('./App/generateNetToken'),
     saveNoveltyResult = require('./App/saveNoveltyResult'),
     getWishList = require('./App/getWishList'),
-    getStudySequence = require('./App/getStudySequence'),
-    saveEmail = require('./App/saveEmail');
+    getStudySequence = require('./App/getStudySequence');
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,

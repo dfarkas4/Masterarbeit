@@ -11,7 +11,8 @@ const Hapi = require('hapi'),
     testCollection2 = db.collection('test_collection2'),
     netTokenCollection = db.collection('neural_net_token'),
     _ = require('lodash'),
-    getFilteredResults = require('./App/getFilteredResults'),
+    getFilteredResults = require('./App/getFilteredResults').getFilteredResults,
+    attachAccuracy = require('./App/getFilteredResults').attachAccuracy,
     getRandomDishList = require('./App/getRandomDishList'),
     helperFunctions = require('./App/helperFunctions'),
     mapToNetworkData = require('./App/mapToNetworkData'),
@@ -19,7 +20,8 @@ const Hapi = require('hapi'),
     generateNetToken = require('./App/generateNetToken'),
     saveNoveltyResult = require('./App/saveNoveltyResult'),
     getWishList = require('./App/getWishList'),
-    getStudySequence = require('./App/getStudySequence');
+    getStudySequence = require('./App/getStudySequence'),
+    mongoClient = require('mongodb').MongoClient;
 
 const server = Hapi.server({
     port: process.env.PORT || 4000,
@@ -161,7 +163,7 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/trainbrain/{db}',
+    path: '/trainbrain/{db}/{usercode?}',
     handler: async (request, h) => {
         let collection;
 
@@ -194,6 +196,12 @@ server.route({
             dishInput.euro = true;
         } else {
             dishInput.dollar = true;
+        }
+
+        if (request.params.usercode) {
+            dishInput.usercode = request.params.usercode;
+        } else {
+            dishInput.nousercode = true;
         }
 
         return h.view('trainbrain', dishInput);
@@ -244,7 +252,11 @@ server.route({
 
         await neuralNetwork.saveBrain(currNetToken, neuralNet, totalAccuracy, collectionName, minMaxValues, splitDishArr);
 
-        return 'Training wurde erfolgreich abgeschlossen.';
+        if (currDb === '1') {
+            return h.redirect('/trainbrain/2/' + currNetToken);
+        } else {
+            return 'Training wurde erfolgreich abgeschlossen.';
+        }
     }
 });
 
@@ -282,7 +294,7 @@ server.route({
 
         //response.studySequence = studySequence;
 
-        console.log('RESPONSE', response);
+        //console.log('RESPONSE', response);
         return response;
     }
 });
@@ -304,7 +316,7 @@ server.route({
         }
 
         if (_.isUndefined(request.payload.token)) {
-            console.log('Token is missing.'); //return 'Token is missing.'; reverse later
+            return 'Token is missing.';
         }
 
         let netToken = await new Promise((resolve, reject) => {
@@ -320,7 +332,7 @@ server.route({
             //studySequence = '';
 
         if (_.isEmpty(netToken)) {
-            console.log('Token not found.'); //return 'Token not found.'; reverse later
+            return 'Token not found.';
         } else {
             netToken = netToken[0].token;
             //studySequence = await getStudySequence(netToken, request.payload.location);
@@ -336,6 +348,9 @@ server.route({
         };
 
         //response.studySequence = studySequence;
+        let dbConnection = await mongoClient.connect(process.env.DB_STR);
+        await attachAccuracy(response.response, collectionName, netToken, dbConnection);
+        await dbConnection.close(true);
 
         return response;
     }

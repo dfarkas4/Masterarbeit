@@ -9,18 +9,23 @@
 
 <form method="post" action="/trainbrainresults">
     <input type="hidden" value={{dbCollection}} name="dbCollection" />
-    <div class="containerBorders">
-        <p>
-            Erstelle dir bitte einen persönlichen Zugangscode.
-        </p>
-        Dein Zugangscode:
-        <input type="text" pattern=".{6,6}" name="netToken" required>
-        <p class="txtBig">
-            Der Code besteht aus <b>den ersten zwei Buchstaben des Namens deiner Mutter, den ersten zwei Buchstaben des Namens deines Vaters</b> und <b>den ersten zwei Ziffern deines Geburtstages.</b>
-            <br>
-            Beispiel: <b>Ma</b>ria, <b>Ch</b>ristian,  <b>15</b>.07.1990 ergibt  <b>MACH15</b>
-        </p>
-    </div>
+    {{#if nousercode}}
+        <div class="containerBorders">
+            <p>
+                Erstelle dir bitte einen persönlichen Zugangscode.
+            </p>
+            Dein Zugangscode:
+            <input type="text" pattern=".{6,6}" name="netToken" required>
+            <p class="txtBig">
+                Der Code besteht aus <b>den ersten zwei Buchstaben des Namens deiner Mutter, den ersten zwei Buchstaben des Namens deines Vaters</b> und <b>den ersten zwei Ziffern deines Geburtstages.</b>
+                <br>
+                Beispiel: <b>Ma</b>ria, <b>Ch</b>ristian,  <b>15</b>.07.1990 ergibt  <b>MACH15</b>
+            </p>
+        </div>
+    {{/if}}
+    {{#if usercode}}
+        <input type="hidden" value={{usercode}} name="netToken" />
+    {{/if}}
     <br>
     <br>
     {{#each dishes}}
@@ -39,7 +44,13 @@
             <label class="block"><input type='radio' name="{{id_num}}" value=0 required>Ich würde das Gericht nicht essen bzw. ausprobieren</label>
         </div>
     {{/each}}
-    <input class="sendButton" type="submit" value="Senden">
+    {{#if euro}}
+        <input class="sendButton" type="submit" value="Weiter zur Seite 2">
+    {{/if}}
+    {{#if dollar}}
+        <input class="sendButton" type="submit" value="Senden">
+    {{/if}}
+
 </form>
 
 <style>

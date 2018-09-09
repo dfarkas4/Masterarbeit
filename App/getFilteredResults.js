@@ -98,4 +98,5 @@ async function getFilteredResults(payload) {
     return result;
 }
 
-module.exports = getFilteredResults;
+exports.getFilteredResults = getFilteredResults;
+exports.attachAccuracy = attachAccuracy;

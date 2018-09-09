@@ -50,7 +50,9 @@ server.route({
     method: 'GET',
     path: '/novelty',
     handler: async (request, h) => {
-        const db1 = await new Promise((resolve, reject) => {
+        return 'Die Studie ist nicht mehr aktuell.';
+
+        /*const db1 = await new Promise((resolve, reject) => {
             testCollection.find({}, { id_num: 1, title: 1, description_title: 1, image_url: 1 }, function (err, docs) {
                 if (err) {
                     reject(err);
@@ -86,7 +88,7 @@ server.route({
             dishes: randomDishes
         };
 
-        return h.view('novelty', studyInput);
+        return h.view('novelty', studyInput);*/
     }
 });
 
@@ -145,7 +147,6 @@ server.route({
 
                     return await saveNoveltyResult(request.payload, metaData);
                 } else {
-                    console.log('fgt1');
                     return 'failed captcha verification';
                 }
             })
@@ -188,6 +189,12 @@ server.route({
             dishes: randomDishes,
             dbCollection: request.params.db
         };
+
+        if (request.params.db === '1') {
+            dishInput.euro = true;
+        } else {
+            dishInput.dollar = true;
+        }
 
         return h.view('trainbrain', dishInput);
     }
@@ -237,7 +244,7 @@ server.route({
 
         await neuralNetwork.saveBrain(currNetToken, neuralNet, totalAccuracy, collectionName, minMaxValues, splitDishArr);
 
-        return 'Training wurde erfolgreich abgeschlossen. Danke für die Teilnahme.';
+        return 'Training wurde erfolgreich abgeschlossen.';
     }
 });
 
@@ -258,14 +265,14 @@ server.route({
                     resolve(docs);
                 }
             });
-        }),
-        studySequence = '';
+        });
+        //studySequence = '';
 
         if (_.isEmpty(netToken)) {
             console.log('Token not found.'); //return 'Token not found.'; reverse later
         } else {
             netToken = netToken[0].token;
-            studySequence = await getStudySequence(netToken, request.payload.location);
+            //studySequence = await getStudySequence(netToken, request.payload.location);
         }
 
         console.log(request.payload); // TO-DO remove this later
@@ -273,7 +280,7 @@ server.route({
             response: await getFilteredResults(request.payload)
         };
 
-        response.studySequence = studySequence;
+        //response.studySequence = studySequence;
 
         console.log('RESPONSE', response);
         return response;
@@ -309,14 +316,14 @@ server.route({
                     resolve(docs);
                 }
             });
-            }),
-            studySequence = '';
+            });
+            //studySequence = '';
 
         if (_.isEmpty(netToken)) {
             console.log('Token not found.'); //return 'Token not found.'; reverse later
         } else {
             netToken = netToken[0].token;
-            studySequence = await getStudySequence(netToken, request.payload.location);
+            //studySequence = await getStudySequence(netToken, request.payload.location);
         }
 
         minMaxValues.minPrice = await helperFunctions.getMinOrMaxValue('price', collectionName, +1);
@@ -328,7 +335,7 @@ server.route({
             response: await getWishList(collectionName, minMaxValues)
         };
 
-        response.studySequence = studySequence;
+        //response.studySequence = studySequence;
 
         return response;
     }

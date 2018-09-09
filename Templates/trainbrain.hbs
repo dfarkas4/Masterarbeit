@@ -9,8 +9,18 @@
 
 <form method="post" action="/trainbrainresults">
     <input type="hidden" value={{dbCollection}} name="dbCollection" />
-    Dein User-Token:
-    <input type="text" name="netToken" required>
+    <div class="containerBorders">
+        <p>
+            Erstelle dir bitte einen persönlichen Zugangscode.
+        </p>
+        Dein Zugangscode:
+        <input type="text" pattern=".{6,6}" name="netToken" required>
+        <p class="txtBig">
+            Der Code besteht aus <b>den ersten zwei Buchstaben des Namens deiner Mutter, den ersten zwei Buchstaben des Namens deines Vaters</b> und <b>den ersten zwei Ziffern deines Geburtstages.</b>
+            <br>
+            Beispiel: <b>Ma</b>ria, <b>Ch</b>ristian,  <b>15</b>.07.1990 ergibt  <b>MACH15</b>
+        </p>
+    </div>
     <br>
     <br>
     {{#each dishes}}
@@ -20,7 +30,7 @@
                 <p class="txt">{{description_title}}</p>
             {{/if}}
             <p class="txt"><b>Restaurant:</b> {{restaurant}}</p>
-            <p class="txt"><b>Preis:</b> {{price}}</p>
+            <p class="txt"><b>Preis:</b> {{price}} {{#if ../euro}}€{{/if}}{{#if ../dollar}}${{/if}}</p>
             <p class="txt"><b>Entfernung zu Fuß in Meter:</b> {{distance}}</p>
             <p class="txt"><b>Küche:</b> {{kitchen_style}}</p>
             <p class="txt"><b>Gerichttyp:</b> {{type}}</p>
@@ -61,6 +71,10 @@
         max-width: 400px;
         word-wrap: break-word;
     }
+    .txtBig {
+        max-width: 700px;
+        word-wrap: break-word;
+    }
     .separator {
         color: #8A2BE2;
     }
@@ -97,5 +111,12 @@
     }
     .block {
         display: block;
+        margin: 10px 20px 0px 0px;
+    }
+    input[type="radio"] {
+        -ms-transform: scale(2); /* IE 9 */
+        -webkit-transform: scale(2); /* Chrome, Safari, Opera */
+        transform: scale(2);
+        margin-right: 10px;
     }
 </style>

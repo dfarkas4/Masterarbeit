@@ -1,7 +1,8 @@
 'use strict';
 
 const request = require('request'),
-    latinSquare = require('latinsquare');
+    latinSquare = require('latinsquare'),
+    hashStr = require('string-hash');
 
 /*
 request('http://api.yummly.com/v1/api/recipe/Classic-Chicken-Soup-2368529?_app_id=6902516a&_app_key=492984fa3dd37d10acb4a440fa29e53f', function (error, response, body) {
@@ -34,3 +35,16 @@ console.log('asdasd', asdasd);
 var square2 = latinSquare.generate(5);
 
 console.log(square2);
+
+console.log('STRHASH', hashStr('123.123.12.1'));
+
+var asdmao = {
+    asd: '123',
+    qwe: '3434',
+};
+
+console.log(asdmao);
+
+delete asdmao.email;
+
+console.log(asdmao);

@@ -93,6 +93,13 @@ async function getScenarioSequence(dbConnection) {
 
     res = res + secondSequenceObject['sequenceString'];
 
+    await dbConnection.db().collection('latin_square').update(
+        { "entry_id": "FFFBBB" },
+        { "$set": {
+            "current_sequence": res
+        }}
+    );
+
     return res;
 }
 

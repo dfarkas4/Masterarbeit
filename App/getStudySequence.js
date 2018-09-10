@@ -17,6 +17,8 @@ async function getStudySequence(userToken) {
     if (latinSquare.current_token === userToken) {
         currSequence.currentSequence = latinSquare[latinSquare.current_sequence + ''] + latinSquare[((latinSquare.current_sequence + 1) % 5) + ''];
         currSequence.currentStartingLocation = latinSquare.current_starting_location;
+        let latinScenarioSquare = await dbConnection.db().collection('latin_square').find({ "entry_id": "FFFBBB" }).limit(1).toArray();
+        currSequence.scenarioSequence = latinScenarioSquare[0].current_sequence;
     } else if (latinSquare.current_token !== userToken) {
         currSequence.currentStartingLocation = latinSquare.current_starting_location === 'BERLIN' ? 'WATERLOO' : 'BERLIN';
         currSequence.currentSequence = latinSquare[((latinSquare.current_sequence + 2) % 5) + ''] + latinSquare[((latinSquare.current_sequence + 3) % 5) + ''];
